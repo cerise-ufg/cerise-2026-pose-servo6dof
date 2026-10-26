@@ -52,9 +52,10 @@ O código de 2025 (repositório HPE adaptado e variante MyNet) foi escrito para 
 os módulos `full_net.py`, `depth_net.py`, `depth_extractor.py`, backbones ResNet-50/HRNet-W32, camada integral e
 Depth Anything V2 foram copiados para `hpe2025/`, com alterações mínimas marcadas como `[porte 2026]` (caminhos
 relativos, import ausente do `DepthFeatureExtractor`, pose inicial e robô injetados). A atenção do DINOv2 passou a
-usar `scaled_dot_product_attention` (mesma operação matemática; 2,7× mais rápida e com metade da memória no GB10)
-e os backbones convolucionais passaram a rodar em precisão mista bf16 com `channels_last` (2,6× mais rápido no
-passo de treino medido), mantendo em fp32 a camada integral, a regressão, a cinemática direta e as perdas.
+usar `scaled_dot_product_attention` (mesma operação matemática; de 7,2 para 19,7 imagens/s e de 13,1 para 7,6 GB
+no GB10) e os backbones convolucionais passaram a rodar em precisão mista bf16 com `channels_last` (passo de treino
+de 1,85 s para 0,71 s com lote 32 no micro-benchmark), mantendo em fp32 a camada integral, a regressão, a
+cinemática direta e as perdas.
 O código rodou no aarch64/GB10 sem necessidade de reimplementação.
 
 Durante o porte foram encontrados e corrigidos dois problemas do código de 2025: (i) na variante MyNet, a
@@ -127,8 +128,8 @@ Foram seguidas as etapas da metodologia de 2025 aplicáveis a dados sintéticos 
 Duas inicializações foram comparadas:
 
 - **Transferência (modelo de 2025):** todos os tensores do modelo de 2025 (Panda) cujas formas casam foram
-  carregados — 98,1% (109,1 M de 111,2 M) dos parâmetros; apenas a primeira camada e a saída do regressor de juntas (8 → 5 juntas)
-  foram reinicializadas. Na etapa 1, 100% dos parâmetros da DepthNet vieram do modelo de 2025.
+  carregados — 98,1% (109,1 M de 111,2 M) dos parâmetros; apenas a primeira e a última camada do regressor de juntas, cujas formas dependem do número
+  de juntas (8 → 5), foram reinicializadas. Na etapa 1, 100% dos parâmetros da DepthNet vieram do modelo de 2025.
 - **Baseline (ImageNet):** ResNet-50 (torchvision) e HRNet-W32 (arquivo oficial) pré-treinados no ImageNet, demais
   camadas aleatórias.
 
@@ -163,7 +164,7 @@ transferência de aprendizado — mesma arquitetura e mesmos pesos onde as forma
 A etapa 1 (DepthNet) reduziu o erro de profundidade da raiz na validação para 71 mm com os pesos de 2025 e
 70 mm com inicialização ImageNet (Figura X.4), após 5 épocas sobre as 3151 poses de treino já geradas às 03h
 (subconjunto do split de treino final; o teste nunca foi usado). Na etapa 2, o modelo de transferência foi treinado por 20 épocas
-(62 min no GB10 compartilhado); o baseline ImageNet recebeu 12 épocas (45 min), porque a primeira tentativa de
+(62 min no GB10 compartilhado); o baseline ImageNet recebeu 12 épocas (52 min, limite de tempo), porque a primeira tentativa de
 treiná-lo em paralelo foi interrompida por falta de memória no Spark após o retorno da produção (ver 4.X.7).
 A Figura X.5 compara as curvas por época: com os pesos de 2025, o erro 3D na validação cai de 262 mm (época 1)
 para 54,1 mm (época 20) e o MAE das juntas de 31,5° para 11,9°. **Na mesma época (12)**, a transferência tem erro 3D
@@ -323,8 +324,8 @@ eleva o erro para 94 mm (acurácia@60 mm de 33%), e reduzir a resolução para 2
 perturbações, o MAE das juntas degrada mais devagar que o erro 3D (12,4° → 15,6° com oclusão de 30%), porque a
 regressão de ângulos depende de características globais, enquanto o erro 3D acumula também os erros de
 profundidade e rotação da raiz. O baseline ImageNet parte de um erro maior, mas degrada menos sob ruído e desfoque
-fortes (σ = 0,1: 170 mm contra 213 mm; desfoque de 15 px: 162 mm contra 207 mm), sugerindo que os pesos de 2025
-deixam o modelo mais dependente de detalhes finos da imagem.
+fortes (σ = 0,1: 170 mm contra 213 mm; desfoque de 15 px: 162 mm contra 207 mm) e mais sob compressão JPEG
+(qualidade 15: 215 mm contra 114 mm); nas demais perturbações a transferência permanece melhor em toda a faixa.
 
 ### Latência no GB10
 
@@ -375,6 +376,9 @@ interrompida por pressão de memória.
 - Orçamento de treino curto (20 épocas, ~1 h) em GPU compartilhada; o baseline recebeu menos épocas que a
   transferência, por isso a comparação justa entre inicializações é feita por época (Figura X.5).
 - Os pesos exatos da época 355 do modelo de 2025 (75,4%) não existem; foi usado o estado final do mesmo treino.
+- A etapa 1 (DepthNet) e o experimento de generalização entre câmeras usaram as 3151 poses de treino já geradas às
+  03h (o restante do dataset ainda estava sendo gerado); o modelo final (etapa 2) e todas as avaliações usaram o
+  dataset completo.
 - A latência foi medida com a GPU compartilhada com a produção e outras frentes (valores pessimistas).
 
 ## 4.X.9 Próximos passos
