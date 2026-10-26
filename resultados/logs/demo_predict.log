@@ -1,0 +1,104 @@
+
+=============
+== PyTorch ==
+=============
+
+NVIDIA Release 26.05 (build 313520560)
+PyTorch Version 2.12.0a0+5aff392
+Container image Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Copyright (c) 2014-2024 Facebook Inc.
+Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
+Copyright (c) 2012-2014 Deepmind Technologies    (Koray Kavukcuoglu)
+Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
+Copyright (c) 2011-2013 NYU                      (Clement Farabet)
+Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert, Leon Bottou, Iain Melvin, Jason Weston)
+Copyright (c) 2006      Idiap Research Institute (Samy Bengio)
+Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert, Samy Bengio, Johnny Mariethoz)
+Copyright (c) 2015      Google Inc.
+Copyright (c) 2015      Yangqing Jia
+Copyright (c) 2013-2016 The Caffe contributors
+All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+NOTE: CUDA Forward Compatibility mode ENABLED.
+  Using CUDA 13.2 driver version 595.58.03 with kernel driver version 580.178.04.
+  See https://docs.nvidia.com/deploy/cuda-compatibility/ for details.
+
+xFormers not available
+xFormers not available
+Initialized resnet50 from model zoo
+Loading hrnet pretrained weights (ImageNet) from /workspace/pose/pesos/hrnet_w32-36af842e_roc.pth
+Not using pretrained depthnet weights for the full network training stage. 
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "joints_rad": {
+  "joint_1": -0.8886363506317139,
+  "joint_2": 0.01743115298449993,
+  "joint_3": -0.3505442440509796,
+  "joint_4": -1.3706247806549072,
+  "joint_5": 0.003548308275640011
+ },
+ "joints_graus": {
+  "joint_1": -50.92,
+  "joint_2": 1.0,
+  "joint_3": -20.08,
+  "joint_4": -78.53,
+  "joint_5": 0.2
+ },
+ "keypoints_2d": [
+  [
+   522.2,
+   641.7
+  ],
+  [
+   448.6,
+   645.8
+  ],
+  [
+   448.8,
+   465.0
+  ],
+  [
+   418.2,
+   261.5
+  ],
+  [
+   567.7,
+   388.7
+  ],
+  [
+   554.3,
+   523.1
+  ],
+  [
+   552.0,
+   611.3
+  ]
+ ],
+ "latency_ms": 170.87,
+ "gpu_mem_pico_GB": 2.94
+}
+overlay salvo em /workspace/pose/inferencia/exemplo_frontal_002079.png
+--- verdade (juntas_reais, graus):
+{'joint_1': -43.23, 'joint_2': 0.05, 'joint_3': -17.5, 'joint_4': -69.18, 'joint_5': -7.69}
+xFormers not available
+xFormers not available
+Initialized resnet50 from model zoo
+Loading hrnet pretrained weights (ImageNet) from /workspace/pose/pesos/hrnet_w32-36af842e_roc.pth
+Not using pretrained depthnet weights for the full network training stage. 
+{
+ "n": 100,
+ "media_ms": 162.54798725713044,
+ "mediana_ms": 170.05783540662378,
+ "p95_ms": 174.09021179191768,
+ "fps": 6.152029421429414,
+ "gpu_mem_pico_GB": 2.940653568,
+ "descricao": "PosePredictor.predict(rgb 1280x720) ponta a ponta: recorte+resize (CPU) + Depth Anything V2 vitl + HPE; lote 1; GB10 compartilhado",
+ "data": "2026-10-26 09:23:58"
+}

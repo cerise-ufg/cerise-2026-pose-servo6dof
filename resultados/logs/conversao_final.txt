@@ -1,0 +1,8 @@
+ids completos: 5000 (min 1, max 5000)
+recortes: {'frontal': [-38.7, -162.5, 1045.0], 'diagonal': [122.5, -76.9, 846.6]}
+treino: 8000 amostras (4000 poses)  t=19s
+val: 1000 amostras (500 poses)  t=21s
+teste: 1000 amostras (500 poses)  t=23s
+treino: 8000 imagens (6302 reaproveitadas, 1698 calculadas em 104.5s, 16.2 img/s)  mem_pico=7.57 GB
+val: 1000 imagens (798 reaproveitadas, 202 calculadas em 20.6s, 9.8 img/s)  mem_pico=7.57 GB
+teste: 1000 imagens (790 reaproveitadas, 210 calculadas em 20.1s, 10.5 img/s)  mem_pico=7.57 GB

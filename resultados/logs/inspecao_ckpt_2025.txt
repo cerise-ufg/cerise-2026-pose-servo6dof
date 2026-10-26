@@ -1,0 +1,56 @@
+chaves do checkpoint: ['epoch', 'model_state_dict', 'optimizer_state_dict', 'lr_scheduler_last_epoch', 'all_metrics', 'auc_add']
+{
+ "epoch": 206,
+ "lr_scheduler_last_epoch": -1,
+ "auc_add": 0.5315021117166213
+}
+init_pose                        tensores=    1 params=   0.000M
+init_rot                         tensores=    1 params=   0.000M
+reg_backbone                     tensores=  318 params=  23.561M
+deconv_layers                    tensores=   18 params=  10.489M
+final_layer                      tensores=    2 params=   0.115M
+fc_pose_1                        tensores=    2 params=   2.106M
+fc_pose_2                        tensores=    2 params=   1.050M
+decpose                          tensores=    2 params=   0.008M
+fc_rot_1                         tensores=    2 params=   2.104M
+fc_rot_2                         tensores=    2 params=   1.050M
+decrot                           tensores=    2 params=   0.006M
+rootnet_backbone                 tensores= 1954 params=  39.259M
+depth_backbone                   tensores=   28 params=   4.180M
+depth_refine_root_fc_d1          tensores=    2 params=   2.098M
+depth_refine_root_fc_d2          tensores=    2 params=   0.525M
+depth_refine_root_bn             tensores=    5 params=   0.002M
+depth_refine_root_fc_u2          tensores=    2 params=   0.525M
+depth_refine_root_fc_u1          tensores=    2 params=   2.099M
+fusion_fc_root                   tensores=    2 params=   8.391M
+depth_refine_reg_fc_d1           tensores=    2 params=   2.098M
+depth_refine_reg_fc_d2           tensores=    2 params=   0.525M
+depth_refine_reg_bn              tensores=    5 params=   0.002M
+depth_refine_reg_fc_u2           tensores=    2 params=   0.525M
+depth_refine_reg_fc_u1           tensores=    2 params=   2.099M
+fusion_fc                        tensores=    2 params=   8.391M
+depth_layer                      tensores=    2 params=   0.002M
+total params (M): 111.210272
+final_layer.weight (448, 256, 1, 1)
+fc_pose_1.weight (1024, 2056)
+decpose.weight (8, 1024)
+init_pose (1, 8)
+init_rot (1, 6)
+decrot.weight (6, 1024)
+fc_rot_1.weight (1024, 2054)
+depth_layer.weight (1, 2048, 1, 1)
+depth_backbone.encoder.0.weight (64, 1, 7, 7)
+fusion_fc.weight (2048, 4096)
+init_pose tensor([[ 0.0000,  0.0000,  0.0000, -1.5272,  0.0000,  1.8675,  0.0000,  0.0200]])
+{
+ "mean_joint_error_train": 3.5938466120011325,
+ "AUC_ADD_train": 0.8970005319148936,
+ "AUC_ADD_integral_xyz_metrics_train": 0.0,
+ "ADD_60_mm_train": 1.0,
+ "ADD_60_mm_integral_xyz_metrics_train": 0.0,
+ "mean_joint_error_realsense": 14.721000850196349,
+ "AUC_ADD_realsense": 0.5315021117166213,
+ "AUC_ADD_integral_xyz_metrics_realsense": 0.0,
+ "ADD_60_mm_realsense": 0.694141689373297,
+ "ADD_60_mm_integral_xyz_metrics_realsense": 0.0
+}

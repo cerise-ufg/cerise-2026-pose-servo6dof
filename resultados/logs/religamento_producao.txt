@@ -1,0 +1,18 @@
+vllm-server: StartedAt=2026-10-26T07:20:55.933175449Z FinishedAt=2026-10-26T03:38:14.624186406Z Restart=unless-stopped
+vllm-embed: StartedAt=2026-10-26T07:20:56.366385527Z FinishedAt=2026-10-26T03:38:13.788210981Z Restart=unless-stopped
+vllm-stt: StartedAt=2026-10-26T07:25:39.806409742Z FinishedAt=2026-10-26T07:25:39.527929919Z Restart=unless-stopped
+qdrant: StartedAt=2026-10-26T07:20:57.023105982Z FinishedAt=2026-10-26T03:38:11.852963301Z Restart=unless-stopped
+braco_gen: StartedAt=2026-10-26T07:02:58.815463508Z FinishedAt=2026-10-26T07:19:47.617920467Z Restart=no
+vania-brain: Mon 2026-10-26 04:20:57 -03
+ollama: Mon 2026-10-26 04:20:57 -03
+ls: impossível aceder a '/home/energiainteligente/braco/dataset_run_restore.sh': Ficheiro ou pasta inexistente
+-rwxrwxr-x 1 energiainteligente energiainteligente 340 2026-10-26 00:07:04.320451618 -0300 /home/energiainteligente/dataset_run_restore.sh
+/home/energiainteligente/braco/finalizar.sh
+-rw-rw-r-- 1 energiainteligente energiainteligente 446955 2026-10-26 00:29:06.348394988 -0300 /home/energiainteligente/braco/build_image.log
+-rw-rw-r-- 1 energiainteligente energiainteligente    383 2026-10-26 04:19:48.061966048 -0300 /home/energiainteligente/braco/finalize.log
+-rw-r--r-- 1 root               root                  195 2026-10-26 04:19:46.199960611 -0300 /home/energiainteligente/braco/gen_main.log
+poses no disco: 5000
+=== chown do dataset para o usuario ===
+=== religando producao ===
+bash: /home/energiainteligente/braco/dataset_run_restore.sh: Ficheiro ou pasta inexistente
+=== FINALIZADO seg 26 out 2026 04:19:48 -03 ===

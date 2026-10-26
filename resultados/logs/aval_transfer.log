@@ -1,0 +1,133 @@
+
+=============
+== PyTorch ==
+=============
+
+NVIDIA Release 26.05 (build 313520560)
+PyTorch Version 2.12.0a0+5aff392
+Container image Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Copyright (c) 2014-2024 Facebook Inc.
+Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
+Copyright (c) 2012-2014 Deepmind Technologies    (Koray Kavukcuoglu)
+Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
+Copyright (c) 2011-2013 NYU                      (Clement Farabet)
+Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert, Leon Bottou, Iain Melvin, Jason Weston)
+Copyright (c) 2006      Idiap Research Institute (Samy Bengio)
+Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert, Samy Bengio, Johnny Mariethoz)
+Copyright (c) 2015      Google Inc.
+Copyright (c) 2015      Yangqing Jia
+Copyright (c) 2013-2016 The Caffe contributors
+All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+NOTE: CUDA Forward Compatibility mode ENABLED.
+  Using CUDA 13.2 driver version 595.58.03 with kernel driver version 580.178.04.
+  See https://docs.nvidia.com/deploy/cuda-compatibility/ for details.
+
+xFormers not available
+xFormers not available
+Initialized resnet50 from model zoo
+Loading hrnet pretrained weights (ImageNet) from /workspace/pose/pesos/hrnet_w32-36af842e_roc.pth
+Not using pretrained depthnet weights for the full network training stage. 
+checkpoint: /runs/final_full_transfer/melhor.pt (etapa=full, init=2025, epoca=20)
+[teste] 1000 imagens em 7s | AUC_ADD=0.4715 ADD@60mm=68.00% erro3d=58.7mm (mediana 41.1) MAE=12.68 graus PCK10px=61.7%
+MAE por junta (graus): [4.19, 3.04, 3.91, 10.52, 41.73]
+[robustez] limpa (DA recalculado): AUC=0.4788 MAE=12.41
+[robustez] ruido_gaussiano      s=0.02   AUC=0.3748 ADD60=54.2% erro3d=69.8mm MAE=13.27 PCK10=57.9%  (92s)
+[robustez] ruido_gaussiano      s=0.05   AUC=0.2110 ADD60=24.5% erro3d=99.0mm MAE=15.64 PCK10=41.7%  (141s)
+[robustez] ruido_gaussiano      s=0.1    AUC=0.0258 ADD60=2.0% erro3d=213.2mm MAE=23.57 PCK10=15.0%  (206s)
+[robustez] ruido_gaussiano      s=0.2    AUC=0.0000 ADD60=0.0% erro3d=544.4mm MAE=36.69 PCK10=3.5%  (262s)
+[robustez] desfoque_movimento   s=3      AUC=0.4222 ADD60=59.8% erro3d=65.2mm MAE=13.07 PCK10=57.9%  (316s)
+[robustez] desfoque_movimento   s=7      AUC=0.2246 ADD60=23.5% erro3d=96.0mm MAE=15.21 PCK10=41.3%  (364s)
+[robustez] desfoque_movimento   s=11     AUC=0.0938 ADD60=7.8% erro3d=141.7mm MAE=17.65 PCK10=29.8%  (414s)
+[robustez] desfoque_movimento   s=15     AUC=0.0312 ADD60=1.0% erro3d=206.6mm MAE=20.44 PCK10=20.2%  (463s)
+[robustez] brilho               s=0.4    AUC=0.4526 ADD60=64.2% erro3d=60.5mm MAE=12.68 PCK10=62.8%  (510s)
+[robustez] brilho               s=0.6    AUC=0.4742 ADD60=67.0% erro3d=58.1mm MAE=12.53 PCK10=64.2%  (566s)
+[robustez] brilho               s=1.4    AUC=0.4801 ADD60=68.0% erro3d=57.2mm MAE=12.37 PCK10=64.5%  (614s)
+[robustez] brilho               s=1.8    AUC=0.4790 ADD60=67.8% erro3d=57.9mm MAE=12.46 PCK10=63.8%  (664s)
+[robustez] contraste            s=0.3    AUC=0.3914 ADD60=52.0% erro3d=67.2mm MAE=13.24 PCK10=58.3%  (715s)
+[robustez] contraste            s=0.6    AUC=0.4610 ADD60=64.2% erro3d=59.2mm MAE=12.65 PCK10=63.9%  (761s)
+[robustez] contraste            s=1.5    AUC=0.4801 ADD60=68.0% erro3d=57.3mm MAE=12.41 PCK10=64.6%  (815s)
+[robustez] contraste            s=2.0    AUC=0.4761 ADD60=67.0% erro3d=57.9mm MAE=12.44 PCK10=63.9%  (863s)
+[robustez] oclusao              s=0.1    AUC=0.3935 ADD60=55.8% erro3d=69.7mm MAE=13.47 PCK10=57.0%  (913s)
+[robustez] oclusao              s=0.2    AUC=0.3243 ADD60=42.2% erro3d=80.8mm MAE=14.57 PCK10=49.3%  (964s)
+[robustez] oclusao              s=0.3    AUC=0.2603 ADD60=33.2% erro3d=94.3mm MAE=15.59 PCK10=45.8%  (1011s)
+[robustez] jpeg                 s=50     AUC=0.3316 ADD60=45.5% erro3d=76.3mm MAE=13.89 PCK10=54.7%  (1065s)
+[robustez] jpeg                 s=30     AUC=0.2867 ADD60=37.0% erro3d=83.5mm MAE=14.35 PCK10=47.5%  (1115s)
+[robustez] jpeg                 s=15     AUC=0.1504 ADD60=14.2% erro3d=113.8mm MAE=16.19 PCK10=32.7%  (1164s)
+[robustez] jpeg                 s=8      AUC=0.0625 ADD60=5.5% erro3d=153.2mm MAE=18.26 PCK10=23.7%  (1218s)
+[robustez] resolucao            s=0.5    AUC=0.4136 ADD60=57.0% erro3d=65.7mm MAE=13.21 PCK10=58.0%  (1265s)
+[robustez] resolucao            s=0.35   AUC=0.2528 ADD60=27.3% erro3d=86.7mm MAE=14.53 PCK10=46.6%  (1317s)
+[robustez] resolucao            s=0.25   AUC=0.1543 ADD60=14.8% erro3d=109.2mm MAE=15.49 PCK10=39.0%  (1367s)
+[latencia] {"da": {"media_ms": 138.8922714930959, "mediana_ms": 136.36517990380526, "p95_ms": 179.182280448731}, "hpe": {"media_ms": 74.93849504040554, "mediana_ms": 70.95791248138994, "p95_ms": 99.59689567331225}, "total": {"media_ms": 213.83076653350145, "mediana_ms": 201.71661605127156, "p95_ms": 270.25107629597187}, "fps_total": 4.676595497511474, "fps_so_hpe": 13.344276522511125, "config": "GB10, batch 1, 256x256, DA-V2 vitl (entrada 518, fp16 autocast) + HPE (backbones bf16 channels_last, cabecas/FK fp32); 100 medidas apos 30 de aquecimento", "mem_pico_GB": 8.037436928}
+salvo: /runs/final_full_transfer/aval/metricas_teste.json
+xFormers not available
+xFormers not available
+Initialized resnet50 from model zoo
+Loading hrnet pretrained weights (ImageNet) from /workspace/pose/pesos/hrnet_w32-36af842e_roc.pth
+Not using pretrained depthnet weights for the full network training stage. 
+checkpoint: /runs/xcam_frontal_transfer/melhor.pt (etapa=full, init=2025, epoca=6)
+[teste] 1000 imagens em 17s | AUC_ADD=0.0418 ADD@60mm=4.30% erro3d=279.4mm (mediana 189.6) MAE=27.82 graus PCK10px=12.7%
+MAE por junta (graus): [20.71, 16.71, 20.43, 39.52, 41.75]
+salvo: /runs/xcam_frontal_transfer/aval/metricas_teste.json
+exportado: /workspace/pose/inferencia/modelo/pose_servo6dof.pt (446 MB)
+xFormers not available
+xFormers not available
+Initialized resnet50 from model zoo
+Loading hrnet pretrained weights (ImageNet) from /workspace/pose/pesos/hrnet_w32-36af842e_roc.pth
+Not using pretrained depthnet weights for the full network training stage. 
+{
+ "joints_rad": {
+  "joint_1": -0.22402241826057434,
+  "joint_2": -0.4336012601852417,
+  "joint_3": 0.4243276119232178,
+  "joint_4": 0.9861968755722046,
+  "joint_5": 0.017704730853438377
+ },
+ "joints_graus": {
+  "joint_1": -12.84,
+  "joint_2": -24.84,
+  "joint_3": 24.31,
+  "joint_4": 56.5,
+  "joint_5": 1.01
+ },
+ "keypoints_2d": [
+  [
+   561.5,
+   550.1
+  ],
+  [
+   518.3,
+   532.5
+  ],
+  [
+   519.6,
+   397.4
+  ],
+  [
+   542.2,
+   276.6
+  ],
+  [
+   693.9,
+   346.4
+  ],
+  [
+   741.4,
+   267.9
+  ],
+  [
+   781.2,
+   200.8
+  ]
+ ],
+ "latency_ms": 85.17,
+ "gpu_mem_pico_GB": 2.94
+}
+overlay salvo em /workspace/pose/inferencia/exemplo_diagonal_004999.png

@@ -36,7 +36,7 @@ Container (montagens mínimas):
 sudo docker run --rm --gpus all --ipc=host \
   -v ~/cerise2026/pose:/workspace/pose \
   -v ~/cerise2026/hf_cache:/root/.cache/huggingface \
-  -e POSE_REPO=/workspace/pose/src/repo \
+  -e POSE_REPO=/workspace/pose/src/repo -e HF_HUB_OFFLINE=1 \
   cerise26_pose:latest \
   python /workspace/pose/inferencia/predict.py \
      --ckpt /workspace/pose/inferencia/modelo/pose_servo6dof.pt \

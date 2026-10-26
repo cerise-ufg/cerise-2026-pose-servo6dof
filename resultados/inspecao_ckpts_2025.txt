@@ -1,0 +1,18 @@
+== best_model_auc.pk
+ "epoch": 206,
+ "auc_add": 0.5315021117166213
+ "mean_joint_error_realsense": 14.721000850196349,
+ "AUC_ADD_realsense": 0.5315021117166213,
+ "ADD_60_mm_realsense": 0.694141689373297,
+== realsense_full_checkpoint.pk
+ "epoch": 439,
+ "auc_add": 0.9259243666666667
+ "mean_joint_error_realsense": 10.449281014959897,
+ "AUC_ADD_realsense": 0.6862513623978203,
+ "ADD_60_mm_realsense": 0.8307220708446866,
+== realsense_full_best_auc_copia1.pk
+ "epoch": 206,
+ "auc_add": 0.5315021117166213
+ "mean_joint_error_realsense": 14.721000850196349,
+ "AUC_ADD_realsense": 0.5315021117166213,
+ "ADD_60_mm_realsense": 0.694141689373297,

@@ -324,6 +324,28 @@ class RootNetwithRegInt(nn.Module):
             img_feat = torch.cat([img_feat, xf_depth_root_refined], dim=1)
             img_feat = self.fusion_fc_root(img_feat)
 
+        # [porte 2026] CORRECAO: na variante MyNet de 2025 a profundidade da raiz era calculada DEPOIS da camada
+        # integral, que entao recebia root_trans = 0 (keypoints 3D do ramo integral sem a profundidade da raiz;
+        # por isso as metricas "integral_xyz" de 2025 ficavam em 0). Aqui volta a ordem do HPE original:
+        # profundidade da raiz -> root_trans -> camada integral.
+        img_feat = torch.unsqueeze(img_feat, 2)
+        img_feat = torch.unsqueeze(img_feat, 3)
+        gamma = self.depth_layer(img_feat)
+        gamma = gamma.view(-1, 1)
+        if self.multi_kp:
+            pred_depths = gamma.view(-1, self.depth_num) * k_value.view(-1, 1).expand(-1, self.depth_num)
+            pred_depths = pred_depths / 1000.0
+            root_index = self.kps_need_depth.index(self.reference_keypoint_id)
+            pred_depth = pred_depths[:, root_index].reshape(-1, 1)
+        else:
+            pred_depth = gamma * k_value.view(-1, 1)
+            pred_depth = pred_depth.reshape(img_feat.size(0), 1) / 1000.0
+        if test_fps:
+            torch.cuda.current_stream().synchronize()
+            t_end_root = time.time()
+            time_root = t_end_root - t_start_root
+        root_trans_from_rootnet = torch.cat([root_trans_from_rootnet[:, :2], pred_depth], dim=1)
+
         if test_fps:
             t_start_other = time.time()
 
@@ -355,25 +377,6 @@ class RootNetwithRegInt(nn.Module):
             # fusão com xf
             xf = torch.cat([xf.squeeze(-1).squeeze(-1), xf_depth_refined], dim=1)
             xf = self.fusion_fc(xf)
-
-        img_feat = torch.unsqueeze(img_feat, 2)
-        img_feat = torch.unsqueeze(img_feat, 3)
-        gamma = self.depth_layer(img_feat)
-        gamma = gamma.view(-1, 1)
-
-        if self.multi_kp:
-            pred_depths = gamma.view(-1, self.depth_num) * k_value.view(-1, 1).expand(-1, self.depth_num)
-            pred_depths = pred_depths / 1000.0
-            root_index = self.kps_need_depth.index(self.reference_keypoint_id)
-            pred_depth = pred_depths[:, root_index].reshape(-1, 1)
-        else:
-            pred_depth = gamma * k_value.view(-1, 1)
-            pred_depth = pred_depth.reshape(img_feat.size(0), 1) / 1000.0
-        if test_fps:
-            torch.cuda.current_stream().synchronize()
-            t_end_root = time.time()
-            time_root = t_end_root - t_start_root
-        root_trans_from_rootnet[:, 2:3] = pred_depth
 
         # root trans (xyz)
         pred_trans = uvz2xyz_singlepoint(pred_root_uv, pred_depth, K)

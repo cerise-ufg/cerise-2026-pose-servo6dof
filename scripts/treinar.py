@@ -118,7 +118,9 @@ def main():
     ap.add_argument("--saida", required=True)
     ap.add_argument("--etapa", choices=["depthnet", "full"], required=True)
     ap.add_argument("--init", choices=["2025", "imagenet"], required=True)
-    ap.add_argument("--ckpt_2025", default="/workspace/pose/pesos/best_model_auc.pk")
+    # estado final do treino de 2025 (MyNet/experiments/panda/realsense_full/checkpoint.pk, epoca 440;
+    # ADD@60mm RealSense = 83,1%). O best_model_auc.pk do mesmo treino e da epoca 207 (69,4%).
+    ap.add_argument("--ckpt_2025", default="/workspace/pose/pesos/realsense_full_checkpoint.pk")
     ap.add_argument("--rootnet", default=None, help="checkpoint da etapa depthnet para o modelo completo")
     ap.add_argument("--epocas", type=int, default=20)
     ap.add_argument("--bs", type=int, default=32)
@@ -133,6 +135,8 @@ def main():
     ap.add_argument("--max_val", type=int, default=0)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--tempo_max_min", type=float, default=0, help="para o treino apos N minutos")
+    ap.add_argument("--retomar", default=None, help="checkpoint (ultimo.pt) para continuar o treino (pesos do modelo)")
+    ap.add_argument("--epoca_inicial", type=int, default=0, help="epocas ja feitas (continua numeracao e agenda do lr)")
     a_cli = ap.parse_args()
     os.makedirs(a_cli.saida, exist_ok=True)
     dev = "cuda"
@@ -177,6 +181,10 @@ def main():
             P(f"[rootnet etapa 1] {st['tensores_carregados']} tensores do DepthNet carregados")
     if info_transfer:
         json.dump(info_transfer, open(os.path.join(a_cli.saida, "transfer_info.json"), "w"), indent=1, default=str)
+    if a_cli.retomar:
+        sdr = torch.load(a_cli.retomar, map_location="cpu", weights_only=False)["model_state_dict"]
+        model.load_state_dict(sdr)
+        P(f"[retomada] pesos de {a_cli.retomar}; continuando da epoca {a_cli.epoca_inicial} (estado do Adam reiniciado)")
     model.to(dev)
     if not a_cli.sem_amp:
         ativar_amp(model)
@@ -185,12 +193,13 @@ def main():
     n_par = sum(p.numel() for p in model.parameters())
     P(f"parametros treinaveis: {n_par/1e6:.2f} M")
     opt = torch.optim.Adam(model.parameters(), lr=a_cli.lr)
+    e0 = a_cli.epoca_inicial
     sched = torch.optim.lr_scheduler.LambdaLR(
-        opt, lambda e: 1.0 if e < a_cli.inicio_decaimento else a_cli.decaimento ** (e - a_cli.inicio_decaimento + 1))
+        opt, lambda e: 1.0 if e + e0 < a_cli.inicio_decaimento else a_cli.decaimento ** (e + e0 - a_cli.inicio_decaimento + 1))
     csv_path = os.path.join(a_cli.saida, "curvas.csv")
     melhor = -1e9
     t_ini = time.time()
-    for ep in range(a_cli.epocas):
+    for ep in range(e0, a_cli.epocas):
         model.train()
         t0 = time.time()
         soma, n = {}, 0

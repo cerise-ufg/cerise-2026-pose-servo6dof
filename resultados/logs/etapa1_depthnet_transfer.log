@@ -1,0 +1,35 @@
+=== 2026-10-26 06:18:48  etapa=depthnet init=2025  args={'dados': '/dados/parcial2', 'saida': '/runs/etapa1_depthnet_transfer_v2', 'etapa': 'depthnet', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/realsense_full_checkpoint.pk', 'rootnet': None, 'epocas': 5, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 2, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 0, 'max_val': 0, 'workers': 3, 'tempo_max_min': 26.0}
+treino: 6302 imagens | val: 798 imagens
+[transfer] 1999/1999 tensores (100.0% dos parametros) carregados; forma diferente: []
+precisao mista bf16 + channels_last ativados nos backbones
+parametros treinaveis: 57.00 M
+ep 1 it 0/196 loss=2674.4985 21s mem=4.7GB
+ep 1 it 50/196 loss=237.6033 78s mem=5.0GB
+ep 1 it 100/196 loss=268.8627 131s mem=5.0GB
+ep 1 it 150/196 loss=159.9448 170s mem=5.0GB
+EPOCA {"epoca": 1, "treino_depth_mm": 335.53659, "treino_total": 335.53659, "val_erro_prof_raiz_mm": 163.1274, "val_mediana_prof_raiz_mm": 146.96887, "lr": 0.0001, "tempo_treino_s": 185.6, "tempo_total_s": 190.6}
+  -> novo melhor (epoca 1)
+ep 2 it 0/196 loss=223.6568 1s mem=5.0GB
+ep 2 it 50/196 loss=153.2858 15s mem=5.0GB
+ep 2 it 100/196 loss=139.1991 31s mem=5.0GB
+ep 2 it 150/196 loss=149.6417 50s mem=5.0GB
+EPOCA {"epoca": 2, "treino_depth_mm": 170.6322, "treino_total": 170.6322, "val_erro_prof_raiz_mm": 102.13004, "val_mediana_prof_raiz_mm": 75.7323, "lr": 9e-05, "tempo_treino_s": 66.6, "tempo_total_s": 69.1}
+  -> novo melhor (epoca 2)
+ep 3 it 0/196 loss=122.8436 0s mem=5.0GB
+ep 3 it 50/196 loss=158.8404 36s mem=5.0GB
+ep 3 it 100/196 loss=101.4318 75s mem=5.0GB
+ep 3 it 150/196 loss=158.1069 101s mem=5.0GB
+EPOCA {"epoca": 3, "treino_depth_mm": 144.33229, "treino_total": 144.33229, "val_erro_prof_raiz_mm": 87.49994, "val_mediana_prof_raiz_mm": 68.42517, "lr": 8e-05, "tempo_treino_s": 113.6, "tempo_total_s": 116.1}
+  -> novo melhor (epoca 3)
+ep 4 it 0/196 loss=138.4877 0s mem=5.0GB
+ep 4 it 50/196 loss=95.3018 19s mem=5.0GB
+ep 4 it 100/196 loss=97.3131 37s mem=5.0GB
+ep 4 it 150/196 loss=166.8266 61s mem=5.0GB
+EPOCA {"epoca": 4, "treino_depth_mm": 118.92669, "treino_total": 118.92669, "val_erro_prof_raiz_mm": 222.12805, "val_mediana_prof_raiz_mm": 214.00159, "lr": 7e-05, "tempo_treino_s": 93.7, "tempo_total_s": 98.4}
+ep 5 it 0/196 loss=320.9062 1s mem=5.0GB
+ep 5 it 50/196 loss=82.8166 37s mem=5.0GB
+ep 5 it 100/196 loss=136.4701 74s mem=5.0GB
+ep 5 it 150/196 loss=77.6729 113s mem=5.0GB
+EPOCA {"epoca": 5, "treino_depth_mm": 107.02161, "treino_total": 107.02161, "val_erro_prof_raiz_mm": 71.14972, "val_mediana_prof_raiz_mm": 58.96252, "lr": 7e-05, "tempo_treino_s": 148.7, "tempo_total_s": 153.7}
+  -> novo melhor (epoca 5)
+=== fim: 06:29:42  total 10.5 min

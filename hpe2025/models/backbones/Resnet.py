@@ -180,7 +180,11 @@ class BasicBlock(nn.Module):
 
 
 
-def get_resnet(backbone_name, pretrain=True):
+def get_resnet(backbone_name, pretrain=None):
+    # [porte 2026] na inferencia os pesos vem do checkpoint: HPE_RESNET_IMAGENET=0 evita baixar o ImageNet
+    if pretrain is None:
+        import os
+        pretrain = os.environ.get("HPE_RESNET_IMAGENET", "1") != "0"
 
     if backbone_name == "resnet":
         backbone = "resnet50"

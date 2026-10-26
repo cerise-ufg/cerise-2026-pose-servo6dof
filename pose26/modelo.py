@@ -28,13 +28,13 @@ def args_2025(**kw):
         rootnet_image_size=256.0, use_rpmg=False, n_iter=4, p_dropout=0.5, reg_joint_map=False, rotation_dim=6,
         direct_reg_rot=False, rot_iterative_matmul=False, fix_root=True, add_fc=False, multi_kp=False,
         kps_need_depth=None, reference_keypoint_id=REF_KP,
-        # o servo6dof e ~2,4 m de alcance (Panda ~0,85 m): faixa de profundidade relativa do heatmap 3D ampliada
+        # servo6dof: ~2,0 m de alcance do ombro a garra, 2,6 m de altura (Panda ~0,85 m): faixa de profundidade relativa do heatmap 3D ampliada
         bbox_3d_shape=[3000, 3000, 3000],
         pretrained_rootnet=None, imagenet_init=True,
         # perdas: estagio completo sintetico de 2025 (configs/panda/full.yaml do HPE: ramo integral com peso 10,
         # alinhamento 0). A variante MyNet usava integral 0 + alinhamento 1 partindo de um ramo integral ja
         # treinado; aqui o ramo integral precisa ser readaptado ao novo robo/faixa de profundidade.
-        pose_loss_weight=1.0, rot_loss_weight=1.0, trans_loss_weight=1.0, depth_loss_weight=1.0, uv_loss_weight=1.0,
+        pose_loss_weight=1.0, rot_loss_weight=1.0, trans_loss_weight=1.0, depth_loss_weight=10.0, uv_loss_weight=1.0,
         kp2d_loss_weight=10.0, kp3d_loss_weight=10.0, kp2d_int_loss_weight=10.0, kp3d_int_loss_weight=10.0,
         align_3d_loss_weight=0.0, clip_gradient=5.0, lr=1e-4, batch_size=32,
     )

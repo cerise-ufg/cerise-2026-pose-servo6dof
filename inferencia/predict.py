@@ -53,6 +53,7 @@ class PosePredictor:
         a = args_2025(**{k: v for k, v in ck.get("args_modelo", {}).items() if k != "aug"})
         a.imagenet_init = False
         os.environ.setdefault("HPE_HRNET_W32", "")
+        os.environ["HPE_RESNET_IMAGENET"] = "0"
         self.model, _ = construir_full(a, device=device)
         self.model.load_state_dict(ck["model_state_dict"])
         if ck.get("amp", False):

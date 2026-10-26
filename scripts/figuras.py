@@ -19,7 +19,7 @@ from servo6dof import geometria as G  # noqa: E402
 plt.rcParams.update({"figure.dpi": 150, "savefig.dpi": 150, "font.size": 9, "axes.grid": True, "grid.alpha": 0.3,
                      "axes.spines.top": False, "axes.spines.right": False})
 COR = {"transfer": "#1f6fb4", "imagenet": "#d9822b", "frontal": "#1f6fb4", "diagonal": "#2a9d55"}
-ROT = {"transfer": "Transfer. (pesos 2025, Panda)", "imagenet": "Baseline (ImageNet)"}
+ROT = {"transfer": "Transferência (pesos 2025, Panda)", "imagenet": "Baseline (ImageNet)"}
 JUNTAS_PT = ["junta 1 (base)", "junta 2 (ombro)", "junta 3 (cotovelo)", "junta 4 (punho)", "junta 5 (rot. garra)"]
 KP_PT = ["base", "j1", "j2", "j3", "j4", "j5", "garra"]
 
@@ -51,13 +51,13 @@ def fig_curvas(res, out):
         ax[2].plot(e, c["val_MAE_graus"], "-o", ms=3, color=COR[m], label=ROT[m])
         ax[3].plot(e, 100 * c["val_PCK_kp_10px"], "-o", ms=3, color=COR[m], label=ROT[m])
     ax[0].set_title("Perda total (treino)"); ax[0].set_yscale("log")
-    ax[1].set_title("Erro 3D medio dos keypoints (val, mm)")
-    ax[2].set_title("MAE das juntas (val, graus)")
-    ax[3].set_title("PCK@10 px por keypoint (val, %)")
+    ax[1].set_title("Erro 3D médio dos keypoints (val., mm)")
+    ax[2].set_title("MAE das juntas (val., graus)")
+    ax[3].set_title("PCK@10 px por keypoint (val., %)")
     for a in ax:
-        a.set_xlabel("epoca")
+        a.set_xlabel("época")
     ax[0].legend(fontsize=7)
-    fig.suptitle("Etapa 2 (modelo completo) - curvas por epoca no novo dataset do servo6dof", fontsize=10)
+    fig.suptitle("Etapa 2 (modelo completo) — curvas por época no novo dataset do servo6dof", fontsize=10)
     fig.tight_layout()
     fig.savefig(os.path.join(out, "curvas_treino.png")); plt.close(fig)
     if any(v is not None for v in D.values()):
@@ -67,9 +67,9 @@ def fig_curvas(res, out):
                 continue
             ax[0].plot(c["epoca"], c["treino_depth_mm"], "-o", ms=3, color=COR[m], label=ROT[m])
             ax[1].plot(c["epoca"], c["val_erro_prof_raiz_mm"], "-o", ms=3, color=COR[m], label=ROT[m])
-        ax[0].set_title("Etapa 1 (DepthNet): perda L1 treino (mm)"); ax[1].set_title("Erro de profundidade da raiz (val, mm)")
+        ax[0].set_title("Etapa 1 (DepthNet): perda L1 no treino (mm)"); ax[1].set_title("Erro de profundidade da raiz (val., mm)")
         for a in ax:
-            a.set_xlabel("epoca")
+            a.set_xlabel("época")
         ax[0].legend(fontsize=7)
         fig.tight_layout(); fig.savefig(os.path.join(out, "curvas_depthnet.png")); plt.close(fig)
 
@@ -90,9 +90,9 @@ def fig_erros(res, out):
         b = ax[1].bar(x + (i - 0.5) * w, t["erro3d_por_keypoint_mm"], w, color=COR[m], label=ROT[m])
         ax[1].bar_label(b, fmt="%.0f", fontsize=6)
     ax[0].set_xticks(np.arange(5)); ax[0].set_xticklabels(JUNTAS_PT, fontsize=7, rotation=10)
-    ax[0].set_ylabel("erro absoluto medio (graus)"); ax[0].set_title("Erro por junta (teste)")
+    ax[0].set_ylabel("erro absoluto médio (graus)"); ax[0].set_title("Erro por junta (teste)")
     ax[1].set_xticks(np.arange(7)); ax[1].set_xticklabels(KP_PT)
-    ax[1].set_ylabel("erro 3D medio (mm)"); ax[1].set_title("Erro 3D por keypoint (teste)")
+    ax[1].set_ylabel("erro 3D médio (mm)"); ax[1].set_title("Erro 3D por keypoint (teste)")
     ax[0].legend(fontsize=7)
     fig.tight_layout(); fig.savefig(os.path.join(out, "erro_por_junta.png")); plt.close(fig)
 
@@ -114,19 +114,19 @@ def fig_add_pck(res, out):
         ax[1].plot(tp, [100 * (e2 <= t).mean() for t in tp], color=COR[m], label=ROT[m])
     ax[0].axvline(60, color="k", ls="--", lw=0.8); ax[0].text(62, 5, "60 mm (limiar de 2025)", fontsize=7)
     ax[0].axvline(100, color="gray", ls=":", lw=0.8)
-    ax[0].set_xlabel("limiar t (mm)"); ax[0].set_ylabel("% de imagens com erro 3D medio <= t")
-    ax[0].set_title("Curva ADD (acuracia por limiar) - teste")
+    ax[0].set_xlabel("limiar t (mm)"); ax[0].set_ylabel("% de imagens com erro 3D médio ≤ t")
+    ax[0].set_title("Curva ADD (acurácia por limiar) — teste")
     for t in (5, 10, 20):
         ax[1].axvline(t, color="gray", ls=":", lw=0.8)
-    ax[1].set_xlabel("limiar (px, imagem 1280x720)"); ax[1].set_ylabel("% de keypoints com erro 2D <= limiar")
-    ax[1].set_title("Curva PCK 2D - teste")
+    ax[1].set_xlabel("limiar (px, imagem 1280x720)"); ax[1].set_ylabel("% de keypoints com erro 2D ≤ limiar")
+    ax[1].set_title("Curva PCK 2D — teste")
     ax[0].legend(fontsize=7); ax[1].legend(fontsize=7)
     fig.tight_layout(); fig.savefig(os.path.join(out, "curvas_add_pck.png")); plt.close(fig)
 
 
-NOMES_PERT = {"ruido_gaussiano": ("Ruido gaussiano", "desvio (0-1)"), "desfoque_movimento": ("Desfoque de movimento", "kernel (px na entrada 256)"),
-              "brilho": ("Brilho", "fator"), "contraste": ("Contraste", "fator"), "oclusao": ("Oclusao (cutout)", "fracao da caixa do robo"),
-              "jpeg": ("Compressao JPEG", "qualidade"), "resolucao": ("Resolucao reduzida", "escala")}
+NOMES_PERT = {"ruido_gaussiano": ("Ruído gaussiano", "desvio-padrão (0–1)"), "desfoque_movimento": ("Desfoque de movimento", "comprimento do kernel (px, entrada 256)"),
+              "brilho": ("Brilho", "fator"), "contraste": ("Contraste", "fator"), "oclusao": ("Oclusão (cutout)", "fração da caixa do robô"),
+              "jpeg": ("Compressão JPEG", "qualidade"), "resolucao": ("Resolução reduzida", "escala")}
 
 
 def fig_robustez(res, out):
@@ -146,10 +146,10 @@ def fig_robustez(res, out):
                     rb["limpa"])] + [(c["severidade"], c) for c in rb["condicoes"][tp]]
             pts.sort(key=lambda p: p[0])
             xs = [p[0] for p in pts]
-            a.plot(xs, [p[1]["erro3d_kp_medio_mm"] for p in pts], "-o", ms=3, color=COR[m], label=f"{ROT[m]} - erro 3D")
-            a2.plot(xs, [p[1]["MAE_medio_graus"] for p in pts], "--s", ms=3, color=COR[m], alpha=0.6, label=f"{ROT[m]} - MAE")
+            a.plot(xs, [p[1]["erro3d_kp_medio_mm"] for p in pts], "-o", ms=3, color=COR[m], label=f"{ROT[m]} — erro 3D")
+            a2.plot(xs, [p[1]["MAE_medio_graus"] for p in pts], "--s", ms=3, color=COR[m], alpha=0.6, label=f"{ROT[m]} — MAE")
         t, xl = NOMES_PERT.get(tp, (tp, ""))
-        a.set_title(t); a.set_xlabel(xl); a.set_ylabel("erro 3D medio (mm)"); a2.set_ylabel("MAE juntas (graus)", fontsize=7)
+        a.set_title(t); a.set_xlabel(xl); a.set_ylabel("erro 3D médio (mm)"); a2.set_ylabel("MAE juntas (graus)", fontsize=7)
         a2.grid(False)
         if tp == "jpeg":
             a.invert_xaxis()
@@ -157,8 +157,8 @@ def fig_robustez(res, out):
             a.invert_xaxis()
     h1, l1 = axs[0].get_legend_handles_labels()
     axs[-1].axis("off")
-    axs[-1].legend(h1 + [plt.Line2D([], [], ls="--", marker="s", color="gray")], l1 + ["tracejado: MAE (eixo direito)"], loc="center", fontsize=8)
-    fig.suptitle("Robustez sob perturbacoes da imagem de entrada (subconjunto fixo do teste; DA-V2 recalculado)", fontsize=10)
+    axs[-1].legend(h1 + [plt.Line2D([], [], ls="--", marker="s", color="gray")], l1 + ["tracejado: MAE das juntas (eixo direito)"], loc="center", fontsize=8)
+    fig.suptitle("Robustez sob perturbações da imagem de entrada (subconjunto fixo do teste; profundidade DA-V2 recalculada)", fontsize=10)
     fig.tight_layout(); fig.savefig(os.path.join(out, "curvas_robustez.png")); plt.close(fig)
 
 
@@ -180,14 +180,14 @@ def fig_predicoes(res, out, modelo="transfer"):
     pasta = os.path.join(res, "imagens_teste")
     if not os.path.exists(p) or not os.path.isdir(pasta):
         return
-    import cv2
+    from PIL import Image
     z = np.load(p)
     sel = json.load(open(os.path.join(pasta, "selecao.json")))
     fig, axs = plt.subplots(2, len(sel["ids"]), figsize=(4.2 * len(sel["ids"]), 5.4))
     for j, pid in enumerate(sel["ids"]):
         for ci, cam in enumerate(["frontal", "diagonal"]):
             a = axs[ci, j]
-            im = cv2.imread(os.path.join(pasta, f"{pid:06d}_camera_{cam}_image.png"))[..., ::-1]
+            im = np.asarray(Image.open(os.path.join(pasta, f"{pid:06d}_camera_{cam}_image.png")).convert("RGB"))
             k = np.nonzero((z["id"] == pid) & (z["cam"] == ci))[0][0]
             g, pr = z["g2"][k], z["p2"][k]
             a.imshow(im)
@@ -200,26 +200,26 @@ def fig_predicoes(res, out, modelo="transfer"):
             a.set_xlim(max(lo[0], 0), min(hi[0], 1280)); a.set_ylim(min(hi[1], 720), max(lo[1], 0))
             e3 = z["e3_img"][k] * 1000
             ej = np.abs(z["pq"][k] - z["gq"][k]).mean() * 180 / np.pi
-            a.set_title(f"pose {pid:06d} - {cam}\nerro 3D {e3:.0f} mm, MAE {ej:.1f} graus", fontsize=8)
+            a.set_title(f"pose {pid:06d} — {cam}\nerro 3D {e3:.0f} mm, MAE {ej:.1f}°", fontsize=8)
             a.axis("off")
     fig.legend([plt.Line2D([], [], color="#00e676", lw=2), plt.Line2D([], [], color="#ff1744", lw=2)],
-               ["verdade (FK do URDF com as juntas reais)", f"predicao ({ROT[modelo]})"], loc="lower center", ncol=2, fontsize=8)
+               ["verdade (FK do URDF com as juntas reais)", f"predição ({ROT[modelo]})"], loc="lower center", ncol=2, fontsize=8)
     fig.tight_layout(rect=(0, 0.04, 1, 1)); fig.savefig(os.path.join(out, f"predicoes_vs_gt_{modelo}.png")); plt.close(fig)
 
 
 def fig_tabela(res, out):
     M = {m: ler_json(os.path.join(res, f"metricas_teste_{m}.json")) for m in ("transfer", "imagenet")}
-    linhas = [["RoboPose (literatura) - Panda/DREAM real", "74,3", "-", "-", "relatorio dez/2025"],
-              ["HPRE (literatura) - Panda/DREAM real", "75,2", "-", "-", "relatorio dez/2025"],
-              ["Modelo 2025 (Eduardo) - Panda/DREAM real", "75,4", "0,547", "-", "relatorio dez/2025 (ep. 355)"]]
+    linhas = [["RoboPose (literatura) — Panda/DREAM real", "74,3", "-", "-", "relatório dez/2025"],
+              ["HPRE (literatura) — Panda/DREAM real", "75,2", "-", "-", "relatório dez/2025"],
+              ["Modelo 2025 (Eduardo) — Panda/DREAM real", "75,4", "0,547", "11,58", "relatório dez/2025 (ép. 355)"]]
     for m in ("transfer", "imagenet"):
         if M.get(m):
             t = M[m]["teste_todas_cameras"]
-            linhas.append([f"{ROT[m]} - servo6dof/sintetico 2026", f"{100*t['ADD_60mm']:.1f}".replace(".", ","),
-                           f"{t['AUC_ADD_0_100mm']:.3f}".replace(".", ","), f"{t['MAE_medio_graus']:.2f}".replace(".", ","), "medido (teste)"])
+            linhas.append([f"{ROT[m]} — servo6dof/sintético 2026", f"{100*t['ADD_60mm']:.1f}".replace(".", ","),
+                           f"{t['AUC_ADD_0_100mm']:.3f}".replace(".", ","), f"{t['MAE_medio_graus']:.2f}".replace(".", ","), "medido (teste, 1000 imagens)"])
     fig, ax = plt.subplots(figsize=(10.5, 0.5 + 0.38 * len(linhas)))
     ax.axis("off")
-    tb = ax.table(cellText=linhas, colLabels=["Modelo / robo / dados", "Acuracia @60 mm (%)", "AUC ADD (0-100 mm)", "MAE juntas (graus)", "Fonte"],
+    tb = ax.table(cellText=linhas, colLabels=["Modelo / robô / dados", "Acurácia @60 mm (%)", "AUC ADD (0-100 mm)", "MAE juntas (graus)", "Fonte"],
                   loc="center", cellLoc="center", colWidths=[0.38, 0.14, 0.14, 0.13, 0.21])
     tb.auto_set_font_size(False); tb.set_fontsize(8); tb.scale(1, 1.35)
     for (r, c), cell in tb.get_celld().items():
@@ -227,8 +227,27 @@ def fig_tabela(res, out):
             cell.set_facecolor("#e8eef6"); cell.set_text_props(weight="bold")
         elif r >= 4:
             cell.set_facecolor("#f6f9f2")
-    ax.set_title("Acuracia @60 mm: 2025 (Panda) x 2026 (servo6dof) - robos, escalas e datasets diferentes; nao e comparacao direta", fontsize=8.5)
+    ax.set_title("Acurácia @60 mm: 2025 (Panda) × 2026 (servo6dof) — robôs, escalas e datasets diferentes; não é comparação direta", fontsize=8.5)
     fig.tight_layout(); fig.savefig(os.path.join(out, "tabela_comparativa.png")); plt.close(fig)
+
+
+def fig_xcam(res, out):
+    T = ler_json(os.path.join(res, "metricas_teste_transfer.json"))
+    X = ler_json(os.path.join(res, "metricas_teste_xcam.json"))
+    if not (T and X):
+        return
+    fig, ax = plt.subplots(1, 3, figsize=(11, 3.0))
+    cams = ["frontal", "diagonal"]
+    w = 0.38
+    for i, (nome, M, cor) in enumerate((("treino com as 2 câmeras", T, COR["transfer"]), ("treino só com a frontal", X, "#9c4fb8"))):
+        for j, (k, tit, esc) in enumerate((("MAE_medio_graus", "MAE das juntas (°)", 1), ("erro3d_kp_medio_mm", "erro 3D médio (mm)", 1), ("PCK_kp_10px", "PCK@10 px (%)", 100))):
+            v = [M[f"teste_camera_{c}"][k] * esc for c in cams]
+            b = ax[j].bar(np.arange(2) + (i - 0.5) * w, v, w, color=cor, label=nome)
+            ax[j].bar_label(b, fmt="%.1f", fontsize=7)
+            ax[j].set_xticks(np.arange(2)); ax[j].set_xticklabels([f"teste: {c}" for c in cams]); ax[j].set_title(tit)
+    ax[0].legend(fontsize=7)
+    fig.suptitle("Generalização entre câmeras (modelo de transferência; teste com as duas câmeras)", fontsize=10)
+    fig.tight_layout(); fig.savefig(os.path.join(out, "generalizacao_cameras.png")); plt.close(fig)
 
 
 def main():
@@ -237,7 +256,7 @@ def main():
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
-    for f in (fig_curvas, fig_erros, fig_add_pck, fig_robustez, fig_perturbacoes, fig_tabela):
+    for f in (fig_curvas, fig_erros, fig_add_pck, fig_robustez, fig_perturbacoes, fig_tabela, fig_xcam):
         try:
             f(a.res, a.out)
             print("ok", f.__name__)

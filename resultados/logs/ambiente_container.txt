@@ -1,0 +1,18 @@
+python 3.12.3 torch 2.12.0a0+5aff3928d8.nv26.05 torchvision 0.27.0a0+6214cb20.nv26.05 numpy 2.1.0
+cuda True NVIDIA GB10
+cv2 4.11.0
+pandas 3.0.2
+scipy 1.17.1
+matplotlib 3.10.9
+yaml 6.0.1
+tqdm 4.67.3
+lxml 6.1.3
+networkx 3.6.1
+trimesh 5.2.0
+easydict ok
+huggingface_hub 1.14.0
+PIL 12.2.0
+timm MISSING ModuleNotFoundError
+six 1.16.0
+aarch64
+cerise26_pose:latest c43969dc82b8 35.5GB

@@ -1,0 +1,61 @@
+{
+ "frente": "pose (CERISE 2026, Objetivo 3 - A8/A9)",
+ "status": "pronto",
+ "atualizado_em": "2026-10-26 06:25:13 -03",
+ "imagem_docker": "cerise26_pose:latest",
+ "ckpt": "/home/energiainteligente/cerise2026/pose/inferencia/modelo/pose_servo6dof.pt",
+ "ckpt_no_container": "/workspace/pose/inferencia/modelo/pose_servo6dof.pt",
+ "predict_py": "/home/energiainteligente/cerise2026/pose/inferencia/predict.py",
+ "python_path": [
+  "/workspace/pose/inferencia",
+  "/workspace/pose/src/repo",
+  "/workspace/pose/src/repo/hpe2025"
+ ],
+ "import": "from predict import PosePredictor",
+ "uso": "p = PosePredictor(ckpt, device='cuda'); out = p.predict(rgb_uint8_HxWx3, camera='frontal'|'diagonal')",
+ "saida": {
+  "joints": "dict joint_1..joint_5 em rad",
+  "keypoints_2d": "7 x [u,v] px da imagem de entrada",
+  "keypoints_3d": "7 x [x,y,z] m no frame otico da camera",
+  "keypoint_names": "base, junta_1..junta_5, ponta_garra",
+  "latency_ms": "float (DA-V2 + HPE, com sync da GPU)"
+ },
+ "entrada": "RGB uint8 (nao BGR) 1280x720 das cameras fixas do estudio_hd (frontal ou diagonal); outras resolucoes sao reescaladas",
+ "docker_run": "sudo docker run --rm --gpus all --ipc=host -v ~/cerise2026/pose:/workspace/pose -v ~/cerise2026/hf_cache:/root/.cache/huggingface -e POSE_REPO=/workspace/pose/src/repo -e HF_HUB_OFFLINE=1 cerise26_pose:latest python /workspace/pose/inferencia/predict.py --ckpt /workspace/pose/inferencia/modelo/pose_servo6dof.pt --imagem <png> --camera frontal --saida /workspace/pose/inferencia/overlay.png",
+ "doc": "/home/energiainteligente/cerise2026/pose/inferencia/INFERENCIA.md",
+ "metricas_teste": {
+  "n_imagens": 1000,
+  "MAE_medio_graus": 12.68,
+  "MAE_por_junta_graus": [
+   4.19,
+   3.04,
+   3.91,
+   10.52,
+   41.73
+  ],
+  "erro3d_medio_mm": 58.7,
+  "erro3d_mediano_mm": 41.1,
+  "AUC_ADD_0_100mm": 0.4715,
+  "ADD_60mm": 0.68,
+  "PCK_kp_10px": 0.6172,
+  "erro2d_medio_px": 12.0
+ },
+ "latencia_predictor": {
+  "n": 100,
+  "media_ms": 162.55,
+  "mediana_ms": 170.06,
+  "p95_ms": 174.09,
+  "fps": 6.15,
+  "gpu_mem_pico_GB": 2.94,
+  "descricao": "PosePredictor.predict(rgb 1280x720) ponta a ponta: recorte+resize (CPU) + Depth Anything V2 vitl + HPE; lote 1; GB10 compartilhado",
+  "data": "2026-10-26 09:23:58"
+ },
+ "gpu_mem_pico_GB": 2.94,
+ "limitacoes": [
+  "joint_5 (rotacao da garra) praticamente nao observavel: MAE ~42 graus",
+  "joint_6 (garra) nao estimada",
+  "treinado so com as 2 cameras fixas do estudio_hd (dados sinteticos)",
+  "latencia medida com a GPU compartilhada (producao + outras frentes)"
+ ],
+ "repositorio": "https://github.com/EduardoCaixeta/cerise-2026-pose-servo6dof"
+}

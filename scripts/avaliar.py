@@ -35,6 +35,7 @@ def carregar_modelo(ckpt, dev="cuda"):
     a = args_2025(**{k: v for k, v in ck.get("args_modelo", {}).items() if k not in ("aug",)})
     a.imagenet_init = False
     os.environ.setdefault("HPE_HRNET_W32", "")
+    os.environ["HPE_RESNET_IMAGENET"] = "0"
     model, robot = construir_full(a, device=dev)
     model.load_state_dict(ck["model_state_dict"])
     if ck.get("amp", False):
@@ -176,13 +177,13 @@ def main():
         sub.sort()
         rob = {"n_imagens": int(len(sub)), "condicoes": {}}
         t0 = time.time()
-        rl, _ = avaliar_lista(model, ds, dev, da=da, tipo="limpa", sub=sub)
+        rl, _ = avaliar_lista(model, ds, dev, da=da, tipo="limpa", sub=sub, bs=16)
         rob["limpa"] = {k: rl[k] for k in ("AUC_ADD_0_100mm", "ADD_60mm", "erro3d_kp_medio_mm", "MAE_medio_graus", "PCK_kp_10px", "erro2d_kp_medio_px")}
         print(f"[robustez] limpa (DA recalculado): AUC={rl['AUC_ADD_0_100mm']:.4f} MAE={rl['MAE_medio_graus']:.2f}", flush=True)
         for tipo, sevs in ROBUSTEZ.items():
             rob["condicoes"][tipo] = []
             for s in sevs:
-                rr, _ = avaliar_lista(model, ds, dev, da=da, tipo=tipo, s=s, sub=sub, seed=7)
+                rr, _ = avaliar_lista(model, ds, dev, da=da, tipo=tipo, s=s, sub=sub, seed=7, bs=16)
                 ent = {"severidade": s, **{k: rr[k] for k in rob["limpa"]}}
                 rob["condicoes"][tipo].append(ent)
                 print(f"[robustez] {tipo:20s} s={s:<6} AUC={rr['AUC_ADD_0_100mm']:.4f} ADD60={100*rr['ADD_60mm']:.1f}% "

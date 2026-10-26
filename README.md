@@ -35,7 +35,7 @@ python scripts/converter_dataset.py --dataset /dados/dataset --saida /dados/fina
 python scripts/precomputar_profundidade.py --dados /dados/final
 # 4) treino: etapa 1 (DepthNet) e etapa 2 (modelo completo); --init 2025 (transfer) ou imagenet (baseline)
 python scripts/treinar.py --dados /dados/final --saida /runs/dn --etapa depthnet --init 2025 --epocas 5
-python scripts/treinar.py --dados /dados/final --saida /runs/full --etapa full --init 2025 --rootnet /runs/dn/melhor.pt --epocas 12
+python scripts/treinar.py --dados /dados/final --saida /runs/full --etapa full --init 2025 --rootnet /runs/dn/melhor.pt --epocas 20
 # 5) avaliacao no teste (+ robustez e latencia)
 python scripts/avaliar.py --dados /dados/final --ckpt /runs/full/melhor.pt --saida /runs/full/aval --robustez --latencia
 ```
@@ -49,6 +49,32 @@ python scripts/avaliar.py --dados /dados/final --ckpt /runs/full/melhor.pt --sai
 - Depth Anything V2 Large: Hugging Face `depth-anything/Depth-Anything-V2-Large` (cache `~/cerise2026/hf_cache`).
 - Modelos treinados em 2026: `~/cerise2026/pose/runs/*/melhor.pt`; pacote de inferência: `~/cerise2026/pose/inferencia/modelo/pose_servo6dof.pt`.
 
-## Resultados
+## Resultados (teste: 500 poses × 2 câmeras, nunca vistas no treino)
 
-Ver `RELATORIO_SECAO.md` (tabelas completas) e `resultados/`.
+| | Transferência (pesos de 2025) | Baseline (ImageNet) |
+|---|---|---|
+| MAE médio das 5 juntas | **12,68°** (juntas 1–4: 5,4°) | 13,51° |
+| Erro 3D médio / mediano dos keypoints | **58,7 / 41,1 mm** | 88,3 / 65,7 mm |
+| Acurácia@60 mm (métrica da Tabela I de 2025) | **68,0%** | 32,8% |
+| AUC-ADD (0–100 mm) | **0,471** | 0,265 |
+| PCK 2D @5 / 10 / 20 px (1280×720) | 30,1 / **61,7** / 87,1% | 19,9 / 43,6 / 71,4% |
+| Épocas | 20 | 12 |
+
+- MAE por junta (transferência): 4,2° / 3,0° / 3,9° / 10,5° / 41,7° — a junta 5 (rotação da garra) não é observável
+  pelos keypoints escolhidos (keypoint sobre o eixo).
+- Referência de 2025 (Panda, DREAM real): RoboPose 74,3%, HPRE 75,2%, modelo de 2025 75,4% @60 mm — robô 2,4× menor,
+  dados reais; **não é comparação direta**.
+- Generalização entre câmeras: treinado só com a frontal → erro 3D 140 mm na frontal e 419 mm na diagonal (não generaliza).
+- Robustez: estável a brilho/contraste; sensível a ruído (σ=0,05 → 99 mm), desfoque (7 px → 96 mm), JPEG q30 (84 mm),
+  oclusão de 30% (94 mm) e resolução 25% (109 mm).
+- Latência no GB10 (lote 1, GPU compartilhada): 162,5 ms ponta a ponta (6,2 FPS), 2,94 GB de GPU; o DA-V2 ViT-L é ~65% do custo.
+
+Detalhes, figuras e discussão: `RELATORIO_SECAO.md`; números brutos em `resultados/` (`metricas_teste_*.json`,
+`curvas_*.csv`, `predicoes_teste_*.npz`, `latencia_predictor.json`, `READY.json`).
+
+## Correções feitas no código de 2025 durante o porte
+
+- `full_net.py` (MyNet): a profundidade da raiz era calculada **depois** da camada integral, que recebia
+  `root_trans = 0` (keypoints 3D integrais sem a profundidade da raiz). Restaurada a ordem do HPE original.
+- `full_net.py`: faltava `import` do `DepthFeatureExtractor`; caminhos fixos do Colab trocados por relativos.
+- `train_full.py` chamava `optimizer.step()` duas vezes por iteração; no treino novo é uma vez.

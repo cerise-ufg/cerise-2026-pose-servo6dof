@@ -30,7 +30,7 @@ def resumo(pred_kp3d, gt_kp3d, pred_kp2d, gt_kp2d, pred_q=None, gt_q=None, W=128
     }
     for t in ADD_LIMIARES_MM:
         r[f"ADD_{t}mm"] = float((e3_img <= t / 1000).mean())
-    for t in (150, 175, 200):  # limiares extras (o servo6dof e ~2,9x maior que o Panda)
+    for t in (150, 175, 200):  # limiares extras (alcance do servo6dof ~2,4x o do Panda)
         r[f"ADD_{t}mm"] = float((e3_img <= t / 1000).mean())
     for t in (5, 10, 20):
         r[f"PCK_kp_{t}px"] = float((e2[vis] <= t).mean())       # por keypoint (padrao em pose 2D)

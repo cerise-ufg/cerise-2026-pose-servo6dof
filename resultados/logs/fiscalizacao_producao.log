@@ -1,0 +1,262 @@
+=== 2026-10-26 03:12:01 -0300 ===
+--- braco_gen: Up 3 hours
+--- containers de producao:
+vllm-stt	Exited (0) 3 hours ago
+vllm-embed	Exited (0) 3 hours ago
+qdrant	Exited (143) 3 hours ago
+vllm-server	Exited (0) 3 hours ago
+--- servicos systemd:
+vania-brain	inactive
+?
+ollama	inactive
+?
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 000
+http://localhost:8001/health         HTTP 000
+http://localhost:8002/health         HTTP 000
+http://localhost:6333/healthz        HTTP 000
+http://localhost:8080/               HTTP 000
+http://localhost:11434/api/version   HTTP 000
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          67           6           0          49          54
+3663293, 24354 MiB
+3665156, 5866 MiB
+3665351, 5866 MiB
+3671953, 1702 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 04:19:52 -0300 ===
+--- braco_gen: Exited (0) 4 seconds ago
+--- containers de producao:
+vllm-stt	Exited (0) 4 hours ago
+vllm-embed	Exited (0) 4 hours ago
+qdrant	Exited (143) 4 hours ago
+vllm-server	Exited (0) 4 hours ago
+--- servicos systemd:
+vania-brain	inactive
+ollama	inactive
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 000
+http://localhost:8001/health         HTTP 000
+http://localhost:8002/health         HTTP 000
+http://localhost:6333/healthz        HTTP 000
+http://localhost:8080/               HTTP 000
+http://localhost:11434/api/version   HTTP 000
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          31          27           0          63          89
+3769556, 18546 MiB
+3773397, 1571 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 04:21:53 -0300 ===
+--- braco_gen: Exited (0) 2 minutes ago
+--- containers de producao:
+vllm-stt	Up 56 seconds
+vllm-embed	Up 56 seconds
+qdrant	Up 56 seconds
+vllm-server	Up 57 seconds
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 000
+http://localhost:8001/health         HTTP 000
+http://localhost:8002/health         HTTP 000
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          60           2           0          60          61
+3774286, 9603 MiB
+3774879, 12484 MiB
+3778393, 1692 MiB
+3778440, 14857 MiB
+3778620, 3592 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 04:25:52 -0300 ===
+--- braco_gen: Exited (0) 6 minutes ago
+--- containers de producao:
+vllm-stt	Up 12 seconds
+vllm-embed	Up 4 minutes
+qdrant	Up 4 minutes
+vllm-server	Up 4 minutes
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 200
+http://localhost:8001/health         HTTP 200
+http://localhost:8002/health         HTTP 000
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          79           3           0          39          42
+3778393, 1728 MiB
+3778440, 39623 MiB
+3782353, 18700 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+[2026-10-26 04:32:31] POSE: baseline imagenet interrompido (available 15 GB, vllm-stt com 2 reinicios na partida) - sera rodado em sequencia apos o transfer
+=== 2026-10-26 04:37:23 -0300 ===
+--- braco_gen: Exited (0) 17 minutes ago
+--- containers de producao:
+vllm-stt	Up 11 minutes
+vllm-embed	Up 16 minutes
+qdrant	Up 16 minutes
+vllm-server	Up 16 minutes
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 200
+http://localhost:8001/health         HTTP 200
+http://localhost:8002/health         HTTP 200
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          89           4           0          29          32
+3778393, 1728 MiB
+3778440, 39623 MiB
+3784936, 10768 MiB
+3785382, 4365 MiB
+3802528, 7548 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 05:28:08 -0300 ===
+--- braco_gen: Exited (0) About an hour ago
+--- containers de producao:
+vllm-stt	Up About an hour
+vllm-embed	Up About an hour
+qdrant	Up About an hour
+vllm-server	Up About an hour
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 200
+http://localhost:8001/health         HTTP 200
+http://localhost:8002/health         HTTP 200
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          51          64           0           6          70
+3778393, 1728 MiB
+3778440, 39623 MiB
+3785382, 4365 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 06:21:47 -0300 ===
+--- braco_gen: Exited (0) 2 hours ago
+--- containers de producao:
+vllm-stt	Up 2 hours
+vllm-embed	Up 2 hours
+qdrant	Up 2 hours
+vllm-server	Up 2 hours
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 200
+http://localhost:8001/health         HTTP 200
+http://localhost:8002/health         HTTP 200
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          73          23           0          26          48
+3778393, 1728 MiB
+3778440, 39623 MiB
+3785382, 4365 MiB
+3948592, 16192 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 06:32:36 -0300 ===
+--- braco_gen: Exited (0) 2 hours ago
+--- containers de producao:
+vllm-stt	Up 2 hours
+vllm-embed	Up 2 hours
+qdrant	Up 2 hours
+vllm-server	Up 2 hours
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 200
+http://localhost:8001/health         HTTP 200
+http://localhost:8002/health         HTTP 200
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          80          28           0          14          41
+3778393, 1728 MiB
+3778440, 39623 MiB
+3785382, 4365 MiB
+3958694, 16232 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
+=== 2026-10-26 06:35:26 -0300 ===
+--- braco_gen: Exited (0) 2 hours ago
+--- containers de producao:
+vllm-stt	Up 2 hours
+vllm-embed	Up 2 hours
+qdrant	Up 2 hours
+vllm-server	Up 2 hours
+--- servicos systemd:
+vania-brain	active
+ollama	active
+--- saude HTTP (GET local):
+http://localhost:8000/health         HTTP 200
+http://localhost:8001/health         HTTP 200
+http://localhost:8002/health         HTTP 200
+http://localhost:6333/healthz        HTTP 200
+http://localhost:8080/               HTTP 200
+http://localhost:11434/api/version   HTTP 200
+--- memoria:
+               total        used        free      shared  buff/cache   available
+Mem:             121          72          47           0           3          49
+3778393, 1728 MiB
+3778440, 39623 MiB
+3785382, 4365 MiB
+3967677, 170 MiB
+--- finalizador:
+-rwxrwxr-x 1 energiainteligente energiainteligente 806 out 26 00:45 /home/energiainteligente/braco/finalizar.sh
+/home/energiainteligente/braco/finalize.log
+/home/energiainteligente/braco/gen_main.log
+/home/energiainteligente/braco/build_image.log
