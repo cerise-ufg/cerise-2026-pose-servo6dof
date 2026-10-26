@@ -16,6 +16,8 @@ Imersivas, Robótica e Navegação Autônoma no escopo do CERISE/EMC/UFG").
 
 Seção completa do relatório técnico (metodologia, tabelas, figuras e discussão): [`RELATORIO_SECAO.md`](RELATORIO_SECAO.md).
 
+Roteiro de implementação passo a passo (container, dados, treino, avaliação e inferência em outra máquina): [`ROTEIRO.md`](ROTEIRO.md).
+
 ## Estrutura de pastas
 
 | pasta | conteúdo |
