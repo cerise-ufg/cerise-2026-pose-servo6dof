@@ -1,17 +1,17 @@
-# pesos e checkpoints (grandes; ver README "Onde ficam os pesos")
+# Pesos e checkpoints (grandes): ficam nos Releases do GitHub, ver RELEASES.md
 *.pt
 *.pk
 *.pth
 *.ckpt
+# Memmaps do dataset convertido (regeneraveis pelo conversor, ver README)
 *.npy
-pesos_2025/
-# copia local do codigo de 2025 (fonte: Google Drive do Eduardo, Mestrado/) - referencia, nao versionada
-legado_2025/
-# dados
-dados/
-runs/
 *.u8
-resultados/imagens_teste/
+/dados/
+/runs/
+# Clones de repositorios oficiais de terceiros (ver legado_2025/LEIAME.md para obter)
+legado_2025/Holistic-Robot-Pose-Estimation/mestrado/Depth_Anything/
+legado_2025/MyNet/lib/models/Depth_Anything/
+# Artefatos regeneraveis
 __pycache__/
 *.pyc
 .idea/

@@ -2,5 +2,9 @@
 *.sh text eol=lf
 *.py text eol=lf
 *.urdf text eol=lf
+*.xacro text eol=lf
 *.png binary
+*.jpg binary
+*.gif binary
 *.npz binary
+*.stl binary
