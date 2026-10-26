@@ -1,0 +1,13 @@
+[seq 04:33:38] inicio
+[seq 05:28:08] transfer terminou
+[seq 05:28:08] available=70 GB; reinicios: /vllm-server=0 /vllm-embed=0 /vllm-stt=2 /qdrant=0 
+[seq 05:29:10] aval_transfer terminou: 137
+[seq 05:29:10] available=57 GB; reinicios: /vllm-server=0 /vllm-embed=0 /vllm-stt=2 /qdrant=0 
+[seq 06:21:47] full_imagenet terminou: 0
+[seq 06:21:48] available=48 GB; reinicios: /vllm-server=0 /vllm-embed=0 /vllm-stt=2 /qdrant=0 
+[seq 06:32:15] aval_imagenet terminou: 0
+[seq 06:32:15] available=41 GB; reinicios: /vllm-server=0 /vllm-embed=0 /vllm-stt=2 /qdrant=0 
+[seq 06:32:34] aval_xcam terminou: 0
+[seq 06:32:34] available=41 GB; reinicios: /vllm-server=0 /vllm-embed=0 /vllm-stt=2 /qdrant=0 
+[seq 06:32:36] export terminou: 0
+[seq 06:32:36] fim

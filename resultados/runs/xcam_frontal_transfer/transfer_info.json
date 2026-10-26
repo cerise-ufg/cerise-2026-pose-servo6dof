@@ -1,0 +1,41 @@
+{
+ "tensores_carregados": 2361,
+ "tensores_modelo": 2366,
+ "params_carregados": 109096714,
+ "params_modelo": 111204122,
+ "frac_params": 0.9810491916837399,
+ "forma_diferente": [
+  [
+   "fc_pose_1.weight",
+   [
+    1024,
+    2056
+   ],
+   [
+    1024,
+    2053
+   ]
+  ],
+  [
+   "decpose.weight",
+   [
+    8,
+    1024
+   ],
+   [
+    5,
+    1024
+   ]
+  ],
+  [
+   "decpose.bias",
+   [
+    8
+   ],
+   [
+    5
+   ]
+  ]
+ ],
+ "nao_existem_no_modelo": []
+}

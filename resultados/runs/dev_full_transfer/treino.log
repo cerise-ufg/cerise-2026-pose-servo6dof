@@ -1,0 +1,16 @@
+=== 2026-10-26 05:23:56  etapa=full init=2025  args={'dados': '/dados/parcial', 'saida': '/runs/dev_full_transfer', 'etapa': 'full', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/best_model_auc.pk', 'rootnet': None, 'epocas': 2, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 0, 'max_val': 0, 'workers': 4, 'tempo_max_min': 0}
+treino: 4082 imagens | val: 526 imagens
+[transfer] 2361/2366 tensores (98.1% dos parametros) carregados; forma diferente: ['fc_pose_1.weight', 'decpose.weight', 'decpose.bias']
+precisao mista bf16 + channels_last ativados nos backbones
+parametros treinaveis: 111.07 M
+ep 1 it 0/127 loss=62.4800 22s mem=8.4GB
+ep 1 it 50/127 loss=11.6946 92s mem=9.3GB
+ep 1 it 100/127 loss=9.9911 150s mem=9.3GB
+EPOCA {"epoca": 1, "treino_pose": 0.67055, "treino_rot": 0.56762, "treino_depth": 0.49166, "treino_uv": 0.08722, "treino_trans": 0.23585, "treino_kp3d": 0.77108, "treino_kp2d": 0.19351, "treino_kp3d_int": 2.64135, "treino_kp2d_int": 0.29895, "treino_align": 2.48152, "treino_total": 14.18031, "val_AUC_ADD": 0.00018, "val_ADD_60mm": 0.0, "val_erro3d_mm": 391.17923, "val_erro2d_px": 85.20822, "val_MAE_graus": 37.61831, "val_PCK_kp_10px": 0.03245, "lr": 0.0001, "tempo_treino_s": 188.1, "tempo_total_s": 207.4}
+  -> novo melhor (epoca 1)
+ep 2 it 0/127 loss=8.3118 2s mem=9.3GB
+ep 2 it 50/127 loss=8.2950 77s mem=9.3GB
+ep 2 it 100/127 loss=7.5081 148s mem=9.3GB
+EPOCA {"epoca": 2, "treino_pose": 0.52619, "treino_rot": 0.14522, "treino_depth": 0.17144, "treino_uv": 0.05236, "treino_trans": 0.26436, "treino_kp3d": 0.33765, "treino_kp2d": 0.07037, "treino_kp3d_int": 2.59849, "treino_kp2d_int": 0.28192, "treino_align": 2.52697, "treino_total": 7.7668, "val_AUC_ADD": 0.00097, "val_ADD_60mm": 0.0, "val_erro3d_mm": 275.58102, "val_erro2d_px": 52.8907, "val_MAE_graus": 33.73224, "val_PCK_kp_10px": 0.06897, "lr": 0.0001, "tempo_treino_s": 183.6, "tempo_total_s": 192.5}
+  -> novo melhor (epoca 2)
+=== fim: 05:30:56  total 6.8 min

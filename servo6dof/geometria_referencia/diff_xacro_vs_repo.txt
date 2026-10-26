@@ -1,0 +1,151 @@
+4,5c4,9
+<     <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+<       <parameters>/prefix/share/servo6dof_controller/config/servo6dof_controllers.yaml</parameters>
+---
+>     &gt;
+> 		
+>     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+>       <robot_param>robot_description</robot_param>
+>       <robot_param_node>robot_state_publisher</robot_param_node>
+>       <parameters/>
+10c14
+<       <plugin>ign_ros2_control/IgnitionSystem</plugin>
+---
+>       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+14,15c18,19
+<         <param name="min">-1.570795</param>
+<         <param name="max">1.570795</param>
+---
+>         <param name="min"/>
+>         <param name="max"/>
+19,57d22
+<     <joint name="joint_2">
+<       <command_interface name="position">
+<         <param name="min">-1.570795</param>
+<         <param name="max">1.570795</param>
+<       </command_interface>
+<       <state_interface name="position"/>
+<     </joint>
+<     <joint name="joint_3">
+<       <command_interface name="position">
+<         <param name="min">-1.570795</param>
+<         <param name="max">1.570795</param>
+<       </command_interface>
+<       <state_interface name="position"/>
+<     </joint>
+<     <joint name="joint_4">
+<       <command_interface name="position">
+<         <param name="min">-1.570795</param>
+<         <param name="max">1.570795</param>
+<       </command_interface>
+<       <state_interface name="position"/>
+<     </joint>
+<     <joint name="joint_5">
+<       <command_interface name="position">
+<         <param name="min">-1.570795</param>
+<         <param name="max">1.570795</param>
+<       </command_interface>
+<       <state_interface name="position"/>
+<     </joint>
+<     <joint name="joint_6">
+<       <command_interface name="position">
+<         <param name="min">-0.6981311111111111</param>
+<         <param name="max">0.5235983333333333</param>
+<       </command_interface>
+<       <state_interface name="position"/>
+<     </joint>
+<     <joint name="joint_7">
+<       <param name="mimic">joint_6</param>
+<       <param name="multiplier">-1</param>
+<     </joint>
+70,72d34
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+96,98d57
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+124,126d82
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+152,154d107
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+180,182d132
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+208,210d157
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+236,238d182
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+264,266d207
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+293,295d233
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+322,324d259
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+351,353d285
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+380,382d311
+<       <material name="aluminio">
+<         <color rgba="0.78 0.79 0.82 1.0"/>
+<       </material>
+398a328,369
+>   <transmission name="transmission_1">
+>     <plugin>transmission_interface/SimpleTransmission</plugin>
+>     <actuator name="motor_1" role="acuator1"/>
+>     <joint name="joint_1" role="joint1">
+>       <mechanical_reduction>1.0</mechanical_reduction>
+>     </joint>
+>   </transmission>
+>   <transmission name="transmission_2">
+>     <plugin>transmission_interface/SimpleTransmission</plugin>
+>     <actuator name="motor_2" role="acuator1"/>
+>     <joint name="joint_2" role="joint1">
+>       <mechanical_reduction>1.0</mechanical_reduction>
+>     </joint>
+>   </transmission>
+>   <transmission name="transmission_3">
+>     <plugin>transmission_interface/SimpleTransmission</plugin>
+>     <actuator name="motor_3" role="acuator1"/>
+>     <joint name="joint_3" role="joint1">
+>       <mechanical_reduction>1.0</mechanical_reduction>
+>     </joint>
+>   </transmission>
+>   <transmission name="transmission_4">
+>     <plugin>transmission_interface/SimpleTransmission</plugin>
+>     <actuator name="motor_4" role="acuator1"/>
+>     <joint name="joint_4" role="joint1">
+>       <mechanical_reduction>1.0</mechanical_reduction>
+>     </joint>
+>   </transmission>
+>   <transmission name="transmission_5">
+>     <plugin>transmission_interface/SimpleTransmission</plugin>
+>     <actuator name="motor_5" role="acuator1"/>
+>     <joint name="joint_5" role="joint1">
+>       <mechanical_reduction>1.0</mechanical_reduction>
+>     </joint>
+>   </transmission>
+>   <transmission name="transmission_6">
+>     <plugin>transmission_interface/SimpleTransmission</plugin>
+>     <actuator name="motor_6" role="acuator1"/>
+>     <joint name="joint_6" role="joint1">
+>       <mechanical_reduction>1.0</mechanical_reduction>
+>     </joint>
+>   </transmission>

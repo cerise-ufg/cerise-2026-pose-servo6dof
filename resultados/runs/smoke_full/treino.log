@@ -1,0 +1,20 @@
+=== 2026-10-26 05:09:44  etapa=full init=2025  args={'dados': '/dados/parcial', 'saida': '/runs/smoke_full', 'etapa': 'full', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/best_model_auc.pk', 'rootnet': None, 'epocas': 1, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'max_iters': 30, 'max_val': 4, 'workers': 4, 'tempo_max_min': 0}
+treino: 4082 imagens | val: 526 imagens
+=== 2026-10-26 05:10:35  etapa=full init=2025  args={'dados': '/dados/parcial', 'saida': '/runs/smoke_full', 'etapa': 'full', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/best_model_auc.pk', 'rootnet': None, 'epocas': 1, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'max_iters': 30, 'max_val': 4, 'workers': 4, 'tempo_max_min': 0}
+treino: 4082 imagens | val: 526 imagens
+[transfer] 2361/2366 tensores (98.1% dos parametros) carregados; forma diferente: ['fc_pose_1.weight', 'decpose.weight', 'decpose.bias']
+parametros treinaveis: 111.07 M
+ep 1 it 0/127 loss=62.9683 23s mem=14.4GB
+EPOCA {"epoca": 1, "treino_pose": 0.66964, "treino_rot": 1.06968, "treino_depth": 1.19613, "treino_uv": 0.11879, "treino_trans": 0.11397, "treino_kp3d": 1.33601, "treino_kp2d": 0.39454, "treino_kp3d_int": 2.67139, "treino_kp2d_int": 0.31819, "treino_align": 2.148, "treino_total": 22.62166, "val_AUC_ADD": 0.0, "val_ADD_60mm": 0.0, "val_erro3d_mm": 682.61572, "val_erro2d_px": 129.54977, "val_MAE_graus": 39.86949, "val_PCK_kp_10px": 0.0066, "lr": 0.0001, "tempo_treino_s": 57.2, "tempo_total_s": 67.8}
+  -> novo melhor (epoca 1)
+=== fim: 05:11:54  total 1.2 min
+=== 2026-10-26 05:13:44  etapa=full init=2025  args={'dados': '/dados/parcial', 'saida': '/runs/smoke_full', 'etapa': 'full', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/best_model_auc.pk', 'rootnet': None, 'epocas': 1, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 60, 'max_val': 4, 'workers': 4, 'tempo_max_min': 0}
+treino: 4082 imagens | val: 526 imagens
+[transfer] 2361/2366 tensores (98.1% dos parametros) carregados; forma diferente: ['fc_pose_1.weight', 'decpose.weight', 'decpose.bias']
+precisao mista bf16 ativada nos backbones
+parametros treinaveis: 111.07 M
+ep 1 it 0/127 loss=62.7462 38s mem=8.4GB
+ep 1 it 50/127 loss=10.2370 150s mem=9.3GB
+EPOCA {"epoca": 1, "treino_pose": 0.65382, "treino_rot": 0.86244, "treino_depth": 0.69186, "treino_uv": 0.11082, "treino_trans": 0.22429, "treino_kp3d": 1.00261, "treino_kp2d": 0.27214, "treino_kp3d_int": 2.67214, "treino_kp2d_int": 0.32762, "treino_align": 2.29465, "treino_total": 17.58534, "val_AUC_ADD": 0.0, "val_ADD_60mm": 0.0, "val_erro3d_mm": 624.54303, "val_erro2d_px": 110.61317, "val_MAE_graus": 40.25309, "val_PCK_kp_10px": 0.02521, "lr": 0.0001, "tempo_treino_s": 169.6, "tempo_total_s": 186.3}
+  -> novo melhor (epoca 1)
+=== fim: 05:17:23  total 3.2 min

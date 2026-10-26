@@ -1,0 +1,30 @@
+{
+ "tensores_carregados": 1999,
+ "tensores_modelo": 1999,
+ "params_carregados": 57080651,
+ "params_modelo": 57080651,
+ "frac_params": 1.0,
+ "forma_diferente": [],
+ "nao_existem_no_modelo": [
+  "init_pose",
+  "init_rot",
+  "reg_backbone.conv1.weight",
+  "reg_backbone.bn1.weight",
+  "reg_backbone.bn1.bias",
+  "reg_backbone.bn1.running_mean",
+  "reg_backbone.bn1.running_var",
+  "reg_backbone.bn1.num_batches_tracked",
+  "reg_backbone.layer1.0.conv1.weight",
+  "reg_backbone.layer1.0.bn1.weight",
+  "reg_backbone.layer1.0.bn1.bias",
+  "reg_backbone.layer1.0.bn1.running_mean",
+  "reg_backbone.layer1.0.bn1.running_var",
+  "reg_backbone.layer1.0.bn1.num_batches_tracked",
+  "reg_backbone.layer1.0.conv2.weight",
+  "reg_backbone.layer1.0.bn2.weight",
+  "reg_backbone.layer1.0.bn2.bias",
+  "reg_backbone.layer1.0.bn2.running_mean",
+  "reg_backbone.layer1.0.bn2.running_var",
+  "reg_backbone.layer1.0.bn2.num_batches_tracked"
+ ]
+}

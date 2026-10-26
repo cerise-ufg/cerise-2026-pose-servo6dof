@@ -1,0 +1,13 @@
+{
+ "ids": [
+  4353,
+  2079,
+  4743
+ ],
+ "criterio": "percentis 25/50/75 do erro 3D medio (2 cameras) do modelo de transferencia",
+ "erros_mm": [
+  36.12552261352539,
+  48.42224884033203,
+  66.31998443603516
+ ]
+}

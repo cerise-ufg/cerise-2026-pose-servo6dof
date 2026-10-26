@@ -1,0 +1,28 @@
+{
+  "n_ids": 5000,
+  "splits": {
+    "treino": 8000,
+    "val": 1000,
+    "teste": 1000
+  },
+  "poses_por_split": {
+    "treino": 4000,
+    "val": 500,
+    "teste": 500
+  },
+  "semente_split": 2026,
+  "cameras": [
+    "frontal",
+    "diagonal"
+  ],
+  "keypoints": [
+    "base",
+    "junta_1",
+    "junta_2",
+    "junta_3",
+    "junta_4",
+    "junta_5",
+    "ponta_garra"
+  ],
+  "tempo_s": 23.2
+}

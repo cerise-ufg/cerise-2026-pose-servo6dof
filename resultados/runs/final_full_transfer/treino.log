@@ -1,0 +1,140 @@
+=== 2026-10-26 07:25:55  etapa=full init=2025  args={'dados': '/dados/final', 'saida': '/runs/final_full_transfer', 'etapa': 'full', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/realsense_full_checkpoint.pk', 'rootnet': '/runs/etapa1_depthnet_transfer_v2/melhor.pt', 'epocas': 20, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 0, 'max_val': 0, 'workers': 4, 'tempo_max_min': 70.0}
+treino: 8000 imagens | val: 1000 imagens
+[transfer] 2361/2366 tensores (98.1% dos parametros) carregados; forma diferente: ['fc_pose_1.weight', 'decpose.weight', 'decpose.bias']
+[transfer] 1999/2366 tensores (51.3% dos parametros) carregados; forma diferente: []
+[rootnet etapa 1] 1999 tensores do DepthNet carregados
+precisao mista bf16 + channels_last ativados nos backbones
+parametros treinaveis: 111.07 M
+ep 1 it 0/250 loss=35.5278 22s mem=8.4GB
+ep 1 it 50/250 loss=20.5370 52s mem=9.3GB
+ep 1 it 100/250 loss=18.6014 99s mem=9.3GB
+ep 1 it 150/250 loss=16.6897 191s mem=9.3GB
+ep 1 it 200/250 loss=17.3758 266s mem=9.3GB
+EPOCA {"epoca": 1, "treino_pose": 0.53431, "treino_rot": 0.21937, "treino_depth": 0.13536, "treino_uv": 0.04917, "treino_trans": 0.21652, "treino_kp3d": 0.38964, "treino_kp2d": 0.08901, "treino_kp3d_int": 1.10346, "treino_kp2d_int": 0.07219, "treino_align": 1.09903, "treino_total": 18.91587, "val_AUC_ADD": 0.00282, "val_ADD_60mm": 0.001, "val_erro3d_mm": 262.11923, "val_erro2d_px": 57.45818, "val_MAE_graus": 31.54856, "val_PCK_kp_10px": 0.06348, "lr": 0.0001, "tempo_treino_s": 349.5, "tempo_total_s": 379.3}
+  -> novo melhor (epoca 1)
+ep 2 it 0/250 loss=17.5541 2s mem=9.3GB
+ep 2 it 50/250 loss=16.7249 28s mem=9.3GB
+ep 2 it 100/250 loss=14.9092 68s mem=9.3GB
+ep 2 it 150/250 loss=13.4297 123s mem=9.3GB
+ep 2 it 200/250 loss=13.1946 146s mem=9.3GB
+EPOCA {"epoca": 2, "treino_pose": 0.40869, "treino_rot": 0.07862, "treino_depth": 0.10088, "treino_uv": 0.03085, "treino_trans": 0.15138, "treino_kp3d": 0.24705, "treino_kp2d": 0.05514, "treino_kp3d_int": 0.95885, "treino_kp2d_int": 0.04685, "treino_align": 0.93709, "treino_total": 14.75725, "val_AUC_ADD": 0.03988, "val_ADD_60mm": 0.027, "val_erro3d_mm": 163.7729, "val_erro2d_px": 34.598, "val_MAE_graus": 25.23038, "val_PCK_kp_10px": 0.17636, "lr": 0.0001, "tempo_treino_s": 168.8, "tempo_total_s": 173.6}
+  -> novo melhor (epoca 2)
+ep 3 it 0/250 loss=12.7941 1s mem=9.3GB
+ep 3 it 50/250 loss=13.1974 25s mem=9.3GB
+ep 3 it 100/250 loss=13.3153 51s mem=9.3GB
+ep 3 it 150/250 loss=12.8957 76s mem=9.3GB
+ep 3 it 200/250 loss=12.7674 104s mem=9.3GB
+EPOCA {"epoca": 3, "treino_pose": 0.36331, "treino_rot": 0.05606, "treino_depth": 0.0951, "treino_uv": 0.02524, "treino_trans": 0.13527, "treino_kp3d": 0.21354, "treino_kp2d": 0.04612, "treino_kp3d_int": 0.84836, "treino_kp2d_int": 0.04208, "treino_align": 0.8334, "treino_total": 13.03193, "val_AUC_ADD": 0.03274, "val_ADD_60mm": 0.014, "val_erro3d_mm": 152.64728, "val_erro2d_px": 32.68256, "val_MAE_graus": 24.35962, "val_PCK_kp_10px": 0.15591, "lr": 9e-05, "tempo_treino_s": 130.4, "tempo_total_s": 137.1}
+ep 4 it 0/250 loss=12.1267 1s mem=9.3GB
+ep 4 it 50/250 loss=11.1581 29s mem=9.3GB
+ep 4 it 100/250 loss=11.0484 65s mem=9.3GB
+ep 4 it 150/250 loss=9.8093 90s mem=9.3GB
+ep 4 it 200/250 loss=10.0373 126s mem=9.3GB
+EPOCA {"epoca": 4, "treino_pose": 0.34138, "treino_rot": 0.04715, "treino_depth": 0.07586, "treino_uv": 0.02205, "treino_trans": 0.11257, "treino_kp3d": 0.19529, "treino_kp2d": 0.04338, "treino_kp3d_int": 0.74682, "treino_kp2d_int": 0.03446, "treino_align": 0.73804, "treino_total": 11.48136, "val_AUC_ADD": 0.07157, "val_ADD_60mm": 0.045, "val_erro3d_mm": 137.17888, "val_erro2d_px": 28.10687, "val_MAE_graus": 22.32916, "val_PCK_kp_10px": 0.25455, "lr": 8e-05, "tempo_treino_s": 160.7, "tempo_total_s": 165.9}
+  -> novo melhor (epoca 4)
+ep 5 it 0/250 loss=10.8456 1s mem=9.3GB
+ep 5 it 50/250 loss=10.4797 32s mem=9.3GB
+ep 5 it 100/250 loss=9.5951 68s mem=9.3GB
+ep 5 it 150/250 loss=10.3049 95s mem=9.3GB
+ep 5 it 200/250 loss=10.5557 127s mem=9.3GB
+EPOCA {"epoca": 5, "treino_pose": 0.30306, "treino_rot": 0.0396, "treino_depth": 0.06577, "treino_uv": 0.02011, "treino_trans": 0.09959, "treino_kp3d": 0.17158, "treino_kp2d": 0.03842, "treino_kp3d_int": 0.65909, "treino_kp2d_int": 0.03428, "treino_align": 0.65508, "treino_total": 10.15383, "val_AUC_ADD": 0.08965, "val_ADD_60mm": 0.057, "val_erro3d_mm": 127.12057, "val_erro2d_px": 25.08605, "val_MAE_graus": 20.74429, "val_PCK_kp_10px": 0.29621, "lr": 7e-05, "tempo_treino_s": 160.0, "tempo_total_s": 168.6}
+  -> novo melhor (epoca 5)
+ep 6 it 0/250 loss=9.3237 1s mem=9.3GB
+ep 6 it 50/250 loss=8.7137 27s mem=9.3GB
+ep 6 it 100/250 loss=10.4366 61s mem=9.3GB
+ep 6 it 150/250 loss=8.5485 84s mem=9.3GB
+ep 6 it 200/250 loss=9.1123 120s mem=9.3GB
+EPOCA {"epoca": 6, "treino_pose": 0.26146, "treino_rot": 0.03333, "treino_depth": 0.06289, "treino_uv": 0.01805, "treino_trans": 0.09334, "treino_kp3d": 0.16309, "treino_kp2d": 0.03544, "treino_kp3d_int": 0.58423, "treino_kp2d_int": 0.02673, "treino_align": 0.57434, "treino_total": 9.12999, "val_AUC_ADD": 0.07736, "val_ADD_60mm": 0.06, "val_erro3d_mm": 133.0981, "val_erro2d_px": 27.06465, "val_MAE_graus": 18.33989, "val_PCK_kp_10px": 0.28273, "lr": 7e-05, "tempo_treino_s": 155.3, "tempo_total_s": 160.3}
+ep 7 it 0/250 loss=8.0133 1s mem=9.3GB
+ep 7 it 50/250 loss=9.0891 37s mem=9.3GB
+ep 7 it 100/250 loss=7.9614 60s mem=9.3GB
+ep 7 it 150/250 loss=8.2235 93s mem=9.3GB
+ep 7 it 200/250 loss=8.1332 120s mem=9.3GB
+EPOCA {"epoca": 7, "treino_pose": 0.22958, "treino_rot": 0.02818, "treino_depth": 0.05532, "treino_uv": 0.01608, "treino_trans": 0.08252, "treino_kp3d": 0.14057, "treino_kp2d": 0.03089, "treino_kp3d_int": 0.5732, "treino_kp2d_int": 0.02441, "treino_align": 0.56532, "treino_total": 8.60021, "val_AUC_ADD": 0.27711, "val_ADD_60mm": 0.355, "val_erro3d_mm": 86.95418, "val_erro2d_px": 17.6862, "val_MAE_graus": 15.47767, "val_PCK_kp_10px": 0.45288, "lr": 6e-05, "tempo_treino_s": 146.4, "tempo_total_s": 156.7}
+  -> novo melhor (epoca 7)
+ep 8 it 0/250 loss=7.3678 1s mem=9.3GB
+ep 8 it 50/250 loss=9.2523 29s mem=9.3GB
+ep 8 it 100/250 loss=8.6599 57s mem=9.3GB
+ep 8 it 150/250 loss=8.5632 96s mem=9.3GB
+ep 8 it 200/250 loss=8.2893 120s mem=9.3GB
+EPOCA {"epoca": 8, "treino_pose": 0.21912, "treino_rot": 0.02576, "treino_depth": 0.05468, "treino_uv": 0.01555, "treino_trans": 0.08069, "treino_kp3d": 0.13653, "treino_kp2d": 0.0298, "treino_kp3d_int": 0.57258, "treino_kp2d_int": 0.02373, "treino_align": 0.56651, "treino_total": 8.51426, "val_AUC_ADD": 0.20358, "val_ADD_60mm": 0.233, "val_erro3d_mm": 101.79239, "val_erro2d_px": 19.0656, "val_MAE_graus": 15.29271, "val_PCK_kp_10px": 0.43742, "lr": 5e-05, "tempo_treino_s": 154.9, "tempo_total_s": 159.8}
+ep 9 it 0/250 loss=9.2490 1s mem=9.3GB
+ep 9 it 50/250 loss=8.2751 24s mem=9.3GB
+ep 9 it 100/250 loss=7.5485 59s mem=9.3GB
+ep 9 it 150/250 loss=8.9629 94s mem=9.3GB
+ep 9 it 200/250 loss=7.8713 122s mem=9.3GB
+EPOCA {"epoca": 9, "treino_pose": 0.21039, "treino_rot": 0.02455, "treino_depth": 0.05022, "treino_uv": 0.01483, "treino_trans": 0.07526, "treino_kp3d": 0.12636, "treino_kp2d": 0.02764, "treino_kp3d_int": 0.57137, "treino_kp2d_int": 0.02293, "treino_align": 0.5621, "treino_total": 8.3102, "val_AUC_ADD": 0.24029, "val_ADD_60mm": 0.309, "val_erro3d_mm": 92.69611, "val_erro2d_px": 17.7348, "val_MAE_graus": 15.12195, "val_PCK_kp_10px": 0.43152, "lr": 5e-05, "tempo_treino_s": 154.8, "tempo_total_s": 159.7}
+ep 10 it 0/250 loss=7.8297 1s mem=9.3GB
+ep 10 it 50/250 loss=9.0308 24s mem=9.3GB
+ep 10 it 100/250 loss=7.5803 60s mem=9.3GB
+ep 10 it 150/250 loss=8.1807 83s mem=9.3GB
+ep 10 it 200/250 loss=7.6264 119s mem=9.3GB
+EPOCA {"epoca": 10, "treino_pose": 0.20197, "treino_rot": 0.02214, "treino_depth": 0.04613, "treino_uv": 0.0138, "treino_trans": 0.06963, "treino_kp3d": 0.12233, "treino_kp2d": 0.02708, "treino_kp3d_int": 0.56641, "treino_kp2d_int": 0.02179, "treino_align": 0.55967, "treino_total": 8.14492, "val_AUC_ADD": 0.3306, "val_ADD_60mm": 0.437, "val_erro3d_mm": 78.79214, "val_erro2d_px": 15.4148, "val_MAE_graus": 13.83472, "val_PCK_kp_10px": 0.49515, "lr": 4e-05, "tempo_treino_s": 142.1, "tempo_total_s": 147.0}
+  -> novo melhor (epoca 10)
+ep 11 it 0/250 loss=7.6363 1s mem=9.3GB
+ep 11 it 50/250 loss=8.6979 37s mem=9.3GB
+ep 11 it 100/250 loss=7.1375 63s mem=9.3GB
+ep 11 it 150/250 loss=8.1233 95s mem=9.3GB
+ep 11 it 200/250 loss=7.4359 128s mem=9.3GB
+EPOCA {"epoca": 11, "treino_pose": 0.19444, "treino_rot": 0.02077, "treino_depth": 0.04357, "treino_uv": 0.01308, "treino_trans": 0.06592, "treino_kp3d": 0.11284, "treino_kp2d": 0.02479, "treino_kp3d_int": 0.56077, "treino_kp2d_int": 0.02148, "treino_align": 0.55216, "treino_total": 7.92875, "val_AUC_ADD": 0.34897, "val_ADD_60mm": 0.468, "val_erro3d_mm": 74.49532, "val_erro2d_px": 13.30531, "val_MAE_graus": 13.5868, "val_PCK_kp_10px": 0.57182, "lr": 4e-05, "tempo_treino_s": 160.6, "tempo_total_s": 166.5}
+  -> novo melhor (epoca 11)
+ep 12 it 0/250 loss=7.3140 2s mem=9.3GB
+ep 12 it 50/250 loss=8.1936 45s mem=9.3GB
+ep 12 it 100/250 loss=7.4755 80s mem=9.3GB
+ep 12 it 150/250 loss=7.4977 111s mem=9.3GB
+ep 12 it 200/250 loss=7.1838 149s mem=9.3GB
+EPOCA {"epoca": 12, "treino_pose": 0.19076, "treino_rot": 0.01977, "treino_depth": 0.04202, "treino_uv": 0.01266, "treino_trans": 0.06347, "treino_kp3d": 0.10704, "treino_kp2d": 0.02348, "treino_kp3d_int": 0.5236, "treino_kp2d_int": 0.02329, "treino_align": 0.5168, "treino_total": 7.48098, "val_AUC_ADD": 0.41773, "val_ADD_60mm": 0.591, "val_erro3d_mm": 65.0012, "val_erro2d_px": 13.14201, "val_MAE_graus": 13.11278, "val_PCK_kp_10px": 0.56727, "lr": 3e-05, "tempo_treino_s": 174.8, "tempo_total_s": 180.3}
+  -> novo melhor (epoca 12)
+ep 13 it 0/250 loss=7.1175 1s mem=9.3GB
+ep 13 it 50/250 loss=6.8666 43s mem=9.3GB
+ep 13 it 100/250 loss=6.6416 69s mem=9.3GB
+ep 13 it 150/250 loss=7.7490 104s mem=9.3GB
+ep 13 it 200/250 loss=6.7165 135s mem=9.3GB
+EPOCA {"epoca": 13, "treino_pose": 0.18347, "treino_rot": 0.01782, "treino_depth": 0.03915, "treino_uv": 0.01184, "treino_trans": 0.05982, "treino_kp3d": 0.09916, "treino_kp2d": 0.02175, "treino_kp3d_int": 0.50004, "treino_kp2d_int": 0.02037, "treino_align": 0.49238, "treino_total": 7.07763, "val_AUC_ADD": 0.41735, "val_ADD_60mm": 0.582, "val_erro3d_mm": 65.44366, "val_erro2d_px": 12.69401, "val_MAE_graus": 13.00259, "val_PCK_kp_10px": 0.59788, "lr": 3e-05, "tempo_treino_s": 159.9, "tempo_total_s": 164.9}
+ep 14 it 0/250 loss=7.4256 1s mem=9.3GB
+ep 14 it 50/250 loss=6.8131 24s mem=9.3GB
+ep 14 it 100/250 loss=6.6379 47s mem=9.3GB
+ep 14 it 150/250 loss=6.5337 71s mem=9.3GB
+ep 14 it 200/250 loss=7.9064 96s mem=9.3GB
+EPOCA {"epoca": 14, "treino_pose": 0.18236, "treino_rot": 0.01744, "treino_depth": 0.03716, "treino_uv": 0.01193, "treino_trans": 0.05813, "treino_kp3d": 0.09674, "treino_kp2d": 0.02157, "treino_kp3d_int": 0.49684, "treino_kp2d_int": 0.02, "treino_align": 0.49183, "treino_total": 6.99294, "val_AUC_ADD": 0.36811, "val_ADD_60mm": 0.486, "val_erro3d_mm": 70.60353, "val_erro2d_px": 14.11529, "val_MAE_graus": 12.94597, "val_PCK_kp_10px": 0.52197, "lr": 3e-05, "tempo_treino_s": 123.3, "tempo_total_s": 129.6}
+ep 15 it 0/250 loss=7.4385 1s mem=9.3GB
+ep 15 it 50/250 loss=6.8019 36s mem=9.3GB
+ep 15 it 100/250 loss=6.6111 67s mem=9.3GB
+ep 15 it 150/250 loss=6.4177 108s mem=9.3GB
+ep 15 it 200/250 loss=6.8302 152s mem=9.3GB
+EPOCA {"epoca": 15, "treino_pose": 0.17938, "treino_rot": 0.01634, "treino_depth": 0.03809, "treino_uv": 0.0115, "treino_trans": 0.05784, "treino_kp3d": 0.09525, "treino_kp2d": 0.02094, "treino_kp3d_int": 0.49095, "treino_kp2d_int": 0.01932, "treino_align": 0.48498, "treino_total": 6.91058, "val_AUC_ADD": 0.44513, "val_ADD_60mm": 0.629, "val_erro3d_mm": 61.8087, "val_erro2d_px": 12.68193, "val_MAE_graus": 12.65821, "val_PCK_kp_10px": 0.57409, "lr": 3e-05, "tempo_treino_s": 195.5, "tempo_total_s": 203.0}
+  -> novo melhor (epoca 15)
+ep 16 it 0/250 loss=7.2601 1s mem=9.3GB
+ep 16 it 50/250 loss=8.3203 48s mem=9.3GB
+ep 16 it 100/250 loss=6.9642 93s mem=9.3GB
+ep 16 it 150/250 loss=7.4780 138s mem=9.3GB
+ep 16 it 200/250 loss=7.5923 185s mem=9.3GB
+EPOCA {"epoca": 16, "treino_pose": 0.17583, "treino_rot": 0.0161, "treino_depth": 0.0342, "treino_uv": 0.01096, "treino_trans": 0.05341, "treino_kp3d": 0.09009, "treino_kp2d": 0.02026, "treino_kp3d_int": 0.48718, "treino_kp2d_int": 0.01861, "treino_align": 0.48266, "treino_total": 6.75967, "val_AUC_ADD": 0.46371, "val_ADD_60mm": 0.65, "val_erro3d_mm": 58.86242, "val_erro2d_px": 11.76145, "val_MAE_graus": 12.54231, "val_PCK_kp_10px": 0.63727, "lr": 2e-05, "tempo_treino_s": 226.5, "tempo_total_s": 236.2}
+  -> novo melhor (epoca 16)
+ep 17 it 0/250 loss=6.5024 1s mem=9.3GB
+ep 17 it 50/250 loss=7.3449 44s mem=9.3GB
+ep 17 it 100/250 loss=7.5204 87s mem=9.3GB
+ep 17 it 150/250 loss=6.3049 130s mem=9.3GB
+ep 17 it 200/250 loss=6.4135 169s mem=9.3GB
+EPOCA {"epoca": 17, "treino_pose": 0.17749, "treino_rot": 0.01692, "treino_depth": 0.0341, "treino_uv": 0.01145, "treino_trans": 0.05452, "treino_kp3d": 0.09098, "treino_kp2d": 0.02016, "treino_kp3d_int": 0.48834, "treino_kp2d_int": 0.01875, "treino_align": 0.48321, "treino_total": 6.78368, "val_AUC_ADD": 0.44573, "val_ADD_60mm": 0.638, "val_erro3d_mm": 60.59052, "val_erro2d_px": 11.89347, "val_MAE_graus": 12.3304, "val_PCK_kp_10px": 0.61167, "lr": 2e-05, "tempo_treino_s": 206.9, "tempo_total_s": 217.2}
+ep 18 it 0/250 loss=6.4117 1s mem=9.3GB
+ep 18 it 50/250 loss=7.0687 40s mem=9.3GB
+ep 18 it 100/250 loss=6.1176 77s mem=9.3GB
+ep 18 it 150/250 loss=6.5840 116s mem=9.3GB
+ep 18 it 200/250 loss=6.2565 155s mem=9.3GB
+EPOCA {"epoca": 18, "treino_pose": 0.17389, "treino_rot": 0.01556, "treino_depth": 0.03188, "treino_uv": 0.01061, "treino_trans": 0.05093, "treino_kp3d": 0.08688, "treino_kp2d": 0.01941, "treino_kp3d_int": 0.48562, "treino_kp2d_int": 0.0182, "treino_align": 0.48134, "treino_total": 6.67086, "val_AUC_ADD": 0.48623, "val_ADD_60mm": 0.69, "val_erro3d_mm": 56.14661, "val_erro2d_px": 11.34018, "val_MAE_graus": 12.11089, "val_PCK_kp_10px": 0.63667, "lr": 2e-05, "tempo_treino_s": 192.6, "tempo_total_s": 199.4}
+  -> novo melhor (epoca 18)
+ep 19 it 0/250 loss=6.7381 1s mem=9.3GB
+ep 19 it 50/250 loss=6.7566 38s mem=9.3GB
+ep 19 it 100/250 loss=7.0751 77s mem=9.3GB
+ep 19 it 150/250 loss=6.7652 116s mem=9.3GB
+ep 19 it 200/250 loss=6.2148 152s mem=9.3GB
+EPOCA {"epoca": 19, "treino_pose": 0.17314, "treino_rot": 0.01541, "treino_depth": 0.03139, "treino_uv": 0.01041, "treino_trans": 0.04988, "treino_kp3d": 0.08468, "treino_kp2d": 0.01896, "treino_kp3d_int": 0.48629, "treino_kp2d_int": 0.01797, "treino_align": 0.48061, "treino_total": 6.6416, "val_AUC_ADD": 0.47288, "val_ADD_60mm": 0.655, "val_erro3d_mm": 57.63625, "val_erro2d_px": 10.97502, "val_MAE_graus": 12.28009, "val_PCK_kp_10px": 0.66424, "lr": 2e-05, "tempo_treino_s": 188.4, "tempo_total_s": 195.2}
+ep 20 it 0/250 loss=6.9444 1s mem=9.3GB
+ep 20 it 50/250 loss=6.6535 39s mem=9.3GB
+ep 20 it 100/250 loss=6.2040 78s mem=9.3GB
+ep 20 it 150/250 loss=6.4921 115s mem=9.3GB
+ep 20 it 200/250 loss=6.5986 153s mem=9.3GB
+EPOCA {"epoca": 20, "treino_pose": 0.17048, "treino_rot": 0.01488, "treino_depth": 0.02875, "treino_uv": 0.01016, "treino_trans": 0.04713, "treino_kp3d": 0.08054, "treino_kp2d": 0.01816, "treino_kp3d_int": 0.48201, "treino_kp2d_int": 0.01753, "treino_align": 0.47722, "treino_total": 6.51264, "val_AUC_ADD": 0.5028, "val_ADD_60mm": 0.734, "val_erro3d_mm": 54.13748, "val_erro2d_px": 10.85454, "val_MAE_graus": 11.85523, "val_PCK_kp_10px": 0.65106, "lr": 2e-05, "tempo_treino_s": 182.0, "tempo_total_s": 187.2}
+  -> novo melhor (epoca 20)
+=== fim: 08:28:06  total 61.8 min

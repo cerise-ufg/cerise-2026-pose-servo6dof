@@ -1,0 +1,9 @@
+=== 2026-10-26 07:27:26  etapa=full init=imagenet  args={'dados': '/dados/final', 'saida': '/runs/final_full_imagenet', 'etapa': 'full', 'init': 'imagenet', 'ckpt_2025': '/workspace/pose/pesos/realsense_full_checkpoint.pk', 'rootnet': '/runs/etapa1_depthnet_imagenet_v2/melhor.pt', 'epocas': 20, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 0, 'max_val': 0, 'workers': 4, 'tempo_max_min': 70.0}
+treino: 8000 imagens | val: 1000 imagens
+[transfer] 1999/2366 tensores (51.3% dos parametros) carregados; forma diferente: []
+[rootnet etapa 1] 1999 tensores do DepthNet carregados
+precisao mista bf16 + channels_last ativados nos backbones
+parametros treinaveis: 111.07 M
+ep 1 it 0/250 loss=27.3197 41s mem=8.4GB
+ep 1 it 50/250 loss=14.5618 137s mem=9.3GB
+ep 1 it 100/250 loss=10.8624 207s mem=9.3GB

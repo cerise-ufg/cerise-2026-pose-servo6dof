@@ -1,0 +1,21 @@
+=== 2026-10-26 05:36:42  etapa=depthnet init=2025  args={'dados': '/dados/parcial', 'saida': '/runs/etapa1_depthnet_transfer', 'etapa': 'depthnet', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/best_model_auc.pk', 'rootnet': None, 'epocas': 3, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 2, 'cams_treino': ['frontal', 'diagonal'], 'cams_val': ['frontal', 'diagonal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 0, 'max_val': 0, 'workers': 3, 'tempo_max_min': 0}
+treino: 4082 imagens | val: 526 imagens
+[transfer] 1999/1999 tensores (100.0% dos parametros) carregados; forma diferente: []
+precisao mista bf16 + channels_last ativados nos backbones
+parametros treinaveis: 57.00 M
+ep 1 it 0/127 loss=2868.0715 17s mem=4.7GB
+ep 1 it 50/127 loss=225.9151 79s mem=5.0GB
+ep 1 it 100/127 loss=150.8922 138s mem=5.0GB
+EPOCA {"epoca": 1, "treino_depth_mm": 409.07647, "treino_total": 409.07647, "val_erro_prof_raiz_mm": 152.73346, "val_mediana_prof_raiz_mm": 127.80066, "lr": 0.0001, "tempo_treino_s": 165.4, "tempo_total_s": 180.0}
+  -> novo melhor (epoca 1)
+ep 2 it 0/127 loss=172.3261 1s mem=5.0GB
+ep 2 it 50/127 loss=133.4758 58s mem=5.0GB
+ep 2 it 100/127 loss=153.8515 115s mem=5.0GB
+EPOCA {"epoca": 2, "treino_depth_mm": 163.76728, "treino_total": 163.76728, "val_erro_prof_raiz_mm": 130.20523, "val_mediana_prof_raiz_mm": 115.78101, "lr": 9e-05, "tempo_treino_s": 147.1, "tempo_total_s": 151.7}
+  -> novo melhor (epoca 2)
+ep 3 it 0/127 loss=160.9408 1s mem=5.0GB
+ep 3 it 50/127 loss=108.2943 54s mem=5.0GB
+ep 3 it 100/127 loss=117.2373 102s mem=5.0GB
+EPOCA {"epoca": 3, "treino_depth_mm": 136.79089, "treino_total": 136.79089, "val_erro_prof_raiz_mm": 102.31149, "val_mediana_prof_raiz_mm": 89.83594, "lr": 8e-05, "tempo_treino_s": 129.7, "tempo_total_s": 134.0}
+  -> novo melhor (epoca 3)
+=== fim: 05:44:42  total 7.8 min

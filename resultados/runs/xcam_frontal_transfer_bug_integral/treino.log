@@ -1,0 +1,29 @@
+=== 2026-10-26 06:51:13  etapa=full init=2025  args={'dados': '/dados/parcial2', 'saida': '/runs/xcam_frontal_transfer', 'etapa': 'full', 'init': '2025', 'ckpt_2025': '/workspace/pose/pesos/realsense_full_checkpoint.pk', 'rootnet': '/runs/etapa1_depthnet_transfer_v2/melhor.pt', 'epocas': 10, 'bs': 32, 'lr': 0.0001, 'decaimento': 0.9, 'inicio_decaimento': 3, 'cams_treino': ['frontal'], 'cams_val': ['frontal'], 'sem_aug': False, 'sem_amp': False, 'max_iters': 0, 'max_val': 0, 'workers': 3, 'tempo_max_min': 30.0}
+treino: 3151 imagens | val: 399 imagens
+[transfer] 2361/2366 tensores (98.1% dos parametros) carregados; forma diferente: ['fc_pose_1.weight', 'decpose.weight', 'decpose.bias']
+[transfer] 1999/2366 tensores (51.3% dos parametros) carregados; forma diferente: []
+[rootnet etapa 1] 1999 tensores do DepthNet carregados
+precisao mista bf16 + channels_last ativados nos backbones
+parametros treinaveis: 111.07 M
+ep 1 it 0/98 loss=43.4213 7s mem=8.4GB
+ep 1 it 50/98 loss=30.7068 35s mem=9.3GB
+EPOCA {"epoca": 1, "treino_pose": 0.57802, "treino_rot": 0.30359, "treino_depth": 0.15132, "treino_uv": 0.06369, "treino_trans": 0.26479, "treino_kp3d": 0.4595, "treino_kp2d": 0.10672, "treino_kp3d_int": 2.25272, "treino_kp2d_int": 0.17541, "treino_align": 2.32184, "treino_total": 31.30486, "val_AUC_ADD": 0.0, "val_ADD_60mm": 0.0, "val_erro3d_mm": 290.64636, "val_erro2d_px": 68.0701, "val_MAE_graus": 34.21505, "val_PCK_kp_10px": 0.0448, "lr": 0.0001, "tempo_treino_s": 63.0, "tempo_total_s": 68.5}
+  -> novo melhor (epoca 1)
+ep 2 it 0/98 loss=29.2752 1s mem=9.3GB
+ep 2 it 50/98 loss=27.0563 37s mem=9.3GB
+EPOCA {"epoca": 2, "treino_pose": 0.47781, "treino_rot": 0.11294, "treino_depth": 0.11401, "treino_uv": 0.04245, "treino_trans": 0.18665, "treino_kp3d": 0.26577, "treino_kp2d": 0.06165, "treino_kp3d_int": 2.24556, "treino_kp2d_int": 0.13157, "treino_align": 2.26686, "treino_total": 27.97939, "val_AUC_ADD": 0.02597, "val_ADD_60mm": 0.02506, "val_erro3d_mm": 188.65865, "val_erro2d_px": 46.67274, "val_MAE_graus": 29.76166, "val_PCK_kp_10px": 0.09695, "lr": 0.0001, "tempo_treino_s": 67.9, "tempo_total_s": 70.4}
+  -> novo melhor (epoca 2)
+ep 3 it 0/98 loss=27.5823 1s mem=9.3GB
+ep 3 it 50/98 loss=26.8732 27s mem=9.3GB
+EPOCA {"epoca": 3, "treino_pose": 0.38853, "treino_rot": 0.0791, "treino_depth": 0.10345, "treino_uv": 0.03415, "treino_trans": 0.15873, "treino_kp3d": 0.21415, "treino_kp2d": 0.04914, "treino_kp3d_int": 2.24396, "treino_kp2d_int": 0.12228, "treino_align": 2.25154, "treino_total": 27.05925, "val_AUC_ADD": 0.01938, "val_ADD_60mm": 0.0, "val_erro3d_mm": 190.22527, "val_erro2d_px": 42.57097, "val_MAE_graus": 26.15895, "val_PCK_kp_10px": 0.11819, "lr": 9e-05, "tempo_treino_s": 58.2, "tempo_total_s": 60.5}
+ep 4 it 0/98 loss=27.6401 1s mem=9.3GB
+ep 4 it 50/98 loss=26.4838 25s mem=9.3GB
+EPOCA {"epoca": 4, "treino_pose": 0.34966, "treino_rot": 0.06689, "treino_depth": 0.0923, "treino_uv": 0.0297, "treino_trans": 0.14037, "treino_kp3d": 0.19695, "treino_kp2d": 0.0449, "treino_kp3d_int": 2.2416, "treino_kp2d_int": 0.11931, "treino_align": 2.2535, "treino_total": 26.70656, "val_AUC_ADD": 0.00166, "val_ADD_60mm": 0.0, "val_erro3d_mm": 244.24611, "val_erro2d_px": 51.78927, "val_MAE_graus": 29.94267, "val_PCK_kp_10px": 0.07532, "lr": 8e-05, "tempo_treino_s": 51.3, "tempo_total_s": 53.4}
+ep 5 it 0/98 loss=26.8961 1s mem=9.3GB
+ep 5 it 50/98 loss=25.9053 24s mem=9.3GB
+EPOCA {"epoca": 5, "treino_pose": 0.33916, "treino_rot": 0.0602, "treino_depth": 0.07758, "treino_uv": 0.02812, "treino_trans": 0.12561, "treino_kp3d": 0.18243, "treino_kp2d": 0.04223, "treino_kp3d_int": 2.23923, "treino_kp2d_int": 0.1193, "treino_align": 2.24109, "treino_total": 26.46251, "val_AUC_ADD": 0.00813, "val_ADD_60mm": 0.0, "val_erro3d_mm": 184.80411, "val_erro2d_px": 46.33322, "val_MAE_graus": 27.10287, "val_PCK_kp_10px": 0.08729, "lr": 7e-05, "tempo_treino_s": 50.6, "tempo_total_s": 54.8}
+ep 6 it 0/98 loss=26.4786 1s mem=9.3GB
+ep 6 it 50/98 loss=27.3057 27s mem=9.3GB
+EPOCA {"epoca": 6, "treino_pose": 0.32278, "treino_rot": 0.05209, "treino_depth": 0.07936, "treino_uv": 0.02611, "treino_trans": 0.12328, "treino_kp3d": 0.17073, "treino_kp2d": 0.03885, "treino_kp3d_int": 2.23727, "treino_kp2d_int": 0.11696, "treino_align": 2.24967, "treino_total": 26.24176, "val_AUC_ADD": 0.06007, "val_ADD_60mm": 0.03509, "val_erro3d_mm": 134.44836, "val_erro2d_px": 31.93669, "val_MAE_graus": 21.99252, "val_PCK_kp_10px": 0.21707, "lr": 7e-05, "tempo_treino_s": 49.3, "tempo_total_s": 53.1}
+  -> novo melhor (epoca 6)
+ep 7 it 0/98 loss=25.4775 1s mem=9.3GB

@@ -1,0 +1,31 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy para Windows                              
+-------------------------------------------------------------------------------
+
+  Iniciado: segunda-feira, 26 de outubro de 2026 01:31:12
+   Origem = G:\Meu Drive\Mestrado\MyNet\experiments\panda\realsense_full\
+     Destino : E:\CERISE\FRENTES\ROBOTICA\POSE_SERVO6DOF\pesos_2025\realsense_full\
+
+    Arquivos: best_model_auc.pk
+	    
+  Op‡äes: /DCOPY:DA /COPY:DAT /NP /R:2 /W:5 
+
+------------------------------------------------------------------------------
+
+	    Novo Dir       1	G:\Meu Drive\Mestrado\MyNet\experiments\panda\realsense_full\
+	  Novo Arquivo		   1.2 g	best_model_auc.pk
+
+------------------------------------------------------------------------------
+
+               Total   Copiada  IgnoradaIncompatibilidade     FALHA    Extras
+Diret¢rios:         1         1         0         0         0         0
+ Arquivos:         1         1         0         0         0         0
+    Bytes:   1.243 g   1.243 g         0         0         0         0
+N.§ de Vezes:   0:00:53   0:00:53                       0:00:00   0:00:00
+
+
+Velocidade:           25.036.481 Bytes/s.
+Velocidade:             1432,599 MegaBytes/min.
+   Finalizado em: segunda-feira, 26 de outubro de 2026 01:32:06
+

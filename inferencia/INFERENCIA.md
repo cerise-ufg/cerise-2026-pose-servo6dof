@@ -16,6 +16,13 @@ Saída: ângulos `joint_1..joint_5` (rad), 7 keypoints 2D/3D e a latência.
 | pesos Depth Anything V2 (vitl) | cache HF em `~/cerise2026/hf_cache` (montar em `/root/.cache/huggingface`) |
 | status/métricas | `~/cerise2026/pose/READY.json` |
 
+## Obter o modelo fora do Spark
+
+O checkpoint empacotado (`inferencia/modelo/pose_servo6dof.pt`, 446 MB) não é versionado no git: baixe
+`pose_servo6dof_modelo_final.tar` dos Releases do repositório e extraia na raiz (ver `../RELEASES.md`).
+O `crop.json` correspondente já está em `inferencia/modelo/crop.json`. Os pesos do Depth Anything V2 Large
+vêm do Hugging Face (`python scripts/baixar_pesos_da.py vitl`).
+
 ## Como chamar (Python, dentro do container)
 
 ```python
