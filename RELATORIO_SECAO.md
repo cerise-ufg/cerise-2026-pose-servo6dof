@@ -1,6 +1,6 @@
 # 4.X Objetivo 3 — Atividades 8 e 9: aplicação e avaliação do modelo de detecção de pose de 2025 no novo dataset do braço servo6dof
 
-**Repositório:** https://github.com/EduardoCaixeta/cerise-2026-pose-servo6dof (privado)
+**Repositório:** `cerise-2026-pose-servo6dof` (organização CERISE no GitHub); artefatos grandes nos Releases (`RELEASES.md`).
 **Execução:** DGX Spark (NVIDIA GB10, arquitetura Blackwell, aarch64), contêiner `cerise26_pose:latest` derivado de `nvcr.io/nvidia/pytorch:26.05-py3`.
 
 ## 4.X.1 Objetivo
@@ -347,7 +347,8 @@ O modelo final foi empacotado em `~/cerise2026/pose/inferencia/modelo/pose_servo
 + recortes e intrínsecos das câmeras) e exposto pela classe `PosePredictor` (`~/cerise2026/pose/inferencia/predict.py`):
 `predict(rgb_uint8_HxWx3, camera='frontal'|'diagonal')` devolve os ângulos `joint_1…joint_5` (rad), os 7 keypoints
 2D/3D e a latência. A documentação está em `INFERENCIA.md` e o estado em `~/cerise2026/pose/READY.json`, consumido
-pela frente do gêmeo digital. O uso de memória de GPU no lote 1 foi de 2,94 GB.
+pela frente do gêmeo digital. O uso de memória de GPU no lote 1 foi de 2,94 GB. O pacote do modelo e os checkpoints
+de cada rodada final estão publicados nos Releases do repositório (`RELEASES.md`).
 
 ![Figura X.14: Teste do módulo de inferência (`predict.py`) numa imagem do teste (pose 002079, câmera frontal): ângulos estimados × verdade e latência ponta a ponta do `PosePredictor`.](evidencias/print_inferencia_predict.png)
 
@@ -389,5 +390,5 @@ interrompida por pressão de memória.
 - Capturar imagens reais do braço físico e aplicar a etapa autossupervisionada de 2025 (sim2real).
 - Otimizar a latência (DA-V2 Small/Base, TensorRT, entrada 256 px para o DA) para uso em tempo real no gêmeo digital.
 
-**Código e evidências:** https://github.com/EduardoCaixeta/cerise-2026-pose-servo6dof — métricas em `resultados/`
+**Código e evidências:** repositório `cerise-2026-pose-servo6dof` — métricas em `resultados/`
 (`metricas_teste_*.json`, `curvas_*.csv`, `predicoes_teste_*.npz`), figuras em `evidencias/`.
