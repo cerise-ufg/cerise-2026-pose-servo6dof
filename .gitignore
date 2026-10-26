@@ -1,0 +1,18 @@
+# pesos e checkpoints (grandes; ver README "Onde ficam os pesos")
+*.pt
+*.pk
+*.pth
+*.ckpt
+*.npy
+pesos_2025/
+# copia local do codigo de 2025 (fonte: Google Drive do Eduardo, Mestrado/) - referencia, nao versionada
+legado_2025/
+# dados
+dados/
+runs/
+*.u8
+resultados/imagens_teste/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
