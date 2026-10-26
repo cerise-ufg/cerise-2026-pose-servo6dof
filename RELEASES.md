@@ -24,8 +24,8 @@ Total: 4.911.861.760 B (~4,9 GB) em 7 arquivos. SHA-256 do `.pt` do modelo final
 ## Como baixar, conferir e extrair
 
 ```bash
-# na raiz do repositorio clonado (substitua <organizacao> pelo dono do repositorio)
-gh release download artefatos-2026-10-26 -R <organizacao>/cerise-2026-pose-servo6dof -D _releases
+# na raiz do repositorio clonado (substitua cerise-ufg pelo dono do repositorio)
+gh release download artefatos-2026-10-26 -R cerise-ufg/cerise-2026-pose-servo6dof -D _releases
 cd _releases && sha256sum -c SHA256SUMS.txt && cd ..
 # extrair (cada tar ja traz os caminhos relativos: inferencia/modelo/, runs/<rodada>/, pesos/)
 for f in _releases/*.tar; do tar -xf "$f"; done
