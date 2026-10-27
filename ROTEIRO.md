@@ -19,7 +19,7 @@ Ao final, você terá:
 - Hardware: GPU NVIDIA com pelo menos 12 GB e 32 GB de RAM para o container (limite de [`scripts/spark/rodar.sh`](scripts/spark/rodar.sh)). Picos medidos de GPU: 9,3 GB no treino completo com lote 32 ([`resultados/runs/final_full_transfer/treino.log`](resultados/runs/final_full_transfer/treino.log)), 7,6 GB na profundidade ([`resultados/logs/conversao_final.txt`](resultados/logs/conversao_final.txt)) e 2,94 GB na inferência ([`resultados/latencia_predictor.json`](resultados/latencia_predictor.json)). O projeto usou um NVIDIA DGX Spark (GPU GB10 Blackwell, sm_121, CPU aarch64, 128 GB de memória unificada).
 - Sistema: Linux (o projeto usou Ubuntu 24.04) com Docker, NVIDIA Container Toolkit e driver com suporte a CUDA 13 ([`resultados/logs/check_env.txt`](resultados/logs/check_env.txt) registra o driver 580 em modo de compatibilidade).
 - Software: git, GitHub CLI (`gh`), `sha256sum` e `tar` no hospedeiro. Dentro da imagem: Python 3.12.3, PyTorch 2.12, torchvision 0.27, numpy 2.1 (da base `nvcr.io/nvidia/pytorch:26.05-py3`) e, instalados pelo [`docker/Dockerfile`](docker/Dockerfile), `opencv-python-headless==4.11.0.86`, `lxml`, `trimesh`, `easydict` e `six`.
-- Contas e acessos: conta no GitHub com acesso aos repositórios [`cerise-2026-pose-servo6dof`](https://github.com/cerise-ufg/cerise-2026-pose-servo6dof) e [`cerise-2026-servo6dof-gemeo-digital`](https://github.com/cerise-ufg/cerise-2026-servo6dof-gemeo-digital) (este último fornece o dataset); acesso à internet para baixar a imagem NGC, o Depth Anything V2 Large do Hugging Face e a ResNet-50 do torchvision. Nenhum token é necessário.
+- Contas e acessos: conta no GitHub com acesso aos repositórios [`cerise-2026-pose-servo6dof`](https://github.com/cerise-ufg/cerise-2026-pose-servo6dof) e [`cerise-2026-servo6dof-gemeo-digital`](https://github.com/cerise-ufg/cerise-2026-servo6dof-gemeo-digital) (este último fornece o dataset); acesso à internet para baixar a imagem NGC, o Depth Anything V2 Large do Hugging Face e a ResNet-50 do torchvision. Nenhum token do Hugging Face é necessário; o `gh` exige apenas o seu login no GitHub.
 - Espaço em disco: cerca de 60 GB livres (imagem Docker de 35,5 GB; dataset de 2,6 GB compactado e 2,5 GB extraído; dataset convertido de 2,6 GB; Releases de até 4,9 GB; cerca de 0,9 GB por rodada de treino completo).
 
 **Tabela: Tempos medidos no GB10 compartilhado com outros serviços (fonte: logs em [`resultados/logs/`](resultados/logs) e [`resultados/runs/`](resultados/runs))**
@@ -35,12 +35,12 @@ Ao final, você terá:
 
 ## Obtenção do código e dos dados
 
-1. Autentique o GitHub CLI e clone o repositório:
+1. Autentique o GitHub CLI e clone o repositório em `~/cerise2026/pose`, caminho em que o gêmeo digital procura o modelo (Etapa 6 do roteiro do repositório `cerise-2026-servo6dof-gemeo-digital`):
 
 ```bash
 gh auth login
-gh repo clone cerise-ufg/cerise-2026-pose-servo6dof
-cd cerise-2026-pose-servo6dof
+gh repo clone cerise-ufg/cerise-2026-pose-servo6dof ~/cerise2026/pose
+cd ~/cerise2026/pose
 ```
 
 2. Baixe os artefatos do Release `artefatos-2026-10-26`, confira os SHA-256 e extraia na raiz do repositório. Cada `.tar` já traz os caminhos relativos (`pesos/`, `runs/<rodada>/`, [`inferencia/modelo/`](inferencia/modelo)). O mínimo para treinar é `pesos2025_realsense_full_checkpoint.tar`, que contém o checkpoint de 2025 usado na transferência. Os `ckpt_*.tar` trazem os checkpoints originais, para comparação, e `pose_servo6dof_modelo_final.tar` traz o modelo final para inferência:
@@ -51,7 +51,7 @@ cd _releases && sha256sum -c SHA256SUMS.txt && cd ..
 for f in _releases/*.tar; do tar -xf "$f"; done
 ```
 
-3. Baixe o dataset sintético (versão cinza, a usada em todos os resultados) do Release `dados-2026-10-26` do repositório do gêmeo digital. Extraia as duas partes na mesma pasta e confira arquivo por arquivo com o manifesto:
+3. Baixe o dataset sintético (versão cinza, a usada em todos os resultados) do Release `dados-2026-10-26` do repositório do gêmeo digital. Extraia as duas partes na mesma pasta e confira arquivo por arquivo com o manifesto. Se você já o baixou pelo roteiro do gêmeo digital (pasta `~/braco/dataset`), pule este passo e use `DATASET="$HOME/braco/dataset"` na seção seguinte:
 
 ```bash
 gh release download dados-2026-10-26 -R cerise-ufg/cerise-2026-servo6dof-gemeo-digital \
@@ -73,14 +73,14 @@ A pasta `dataset_cinza/` deve ter 35.009 arquivos: 5.000 JSON, 30.000 PNG (RGB, 
 docker build -t cerise26_pose:latest -f docker/Dockerfile docker/
 ```
 
-2. Abra um shell no container. As montagens reproduzem as de [`scripts/spark/rodar.sh`](scripts/spark/rodar.sh): o repositório em `/workspace/pose`, os dados convertidos em `/dados`, o dataset (somente leitura) em `/dados/dataset`, as rodadas em `/runs` e os caches do Hugging Face e do torchvision no hospedeiro, para baixar os pesos uma única vez:
+2. Abra um shell no container. As montagens reproduzem as de [`scripts/spark/rodar.sh`](scripts/spark/rodar.sh): o repositório em `/workspace/pose`, os dados convertidos em `/dados`, o dataset (somente leitura) em `/dados/dataset`, as rodadas em `/runs` e os caches do Hugging Face (em `~/cerise2026/hf_cache`, o mesmo do gêmeo digital e de `scripts/spark/rodar.sh`) e do torchvision no hospedeiro, para baixar os pesos uma única vez:
 
 ```bash
-mkdir -p dados runs pesos "$HOME/.cache/huggingface" "$HOME/.cache/torch"
+mkdir -p dados runs pesos "$HOME/cerise2026/hf_cache" "$HOME/.cache/torch"
 export DATASET="$HOME/dados_gemeo/dataset_cinza"
 docker run --rm -it --gpus all --ipc=host --memory=32g --memory-swap=32g \
   -e HPE_HRNET_W32=/workspace/pose/pesos/hrnet_w32-36af842e_roc.pth -e PYTHONUNBUFFERED=1 \
-  -v "$HOME/.cache/huggingface":/root/.cache/huggingface \
+  -v "$HOME/cerise2026/hf_cache":/root/.cache/huggingface \
   -v "$HOME/.cache/torch":/root/.cache/torch \
   -v "$PWD":/workspace/pose -v "$PWD/dados":/dados -v "$DATASET":/dados/dataset:ro \
   -v "$PWD/runs":/runs -w /workspace/pose cerise26_pose:latest bash
@@ -127,7 +127,7 @@ python scripts/precomputar_profundidade.py --dados /dados/final --bs 16
 
 ## Treino com transferência e linha de base
 
-O [`scripts/treinar.py`](scripts/treinar.py) implementa as duas etapas de 2025. Na etapa 1, a DepthNet aprende a profundidade da raiz (perda L1). Na etapa 2, o modelo completo (ResNet-50, camada integral, DepthNet da etapa 1, regressão iterativa das juntas e cinemática direta) é treinado com as perdas do estágio sintético de 2025. Com `--init 2025`, os tensores do checkpoint de 2025 cujas formas casam são carregados. Com `--init imagenet`, só os backbones vêm do ImageNet. Os argumentos abaixo são os registrados na primeira linha de cada `resultados/runs/<rodada>/treino.log`. Use pastas `--saida` novas: o script acrescenta linhas a `treino.log` e `curvas.csv` já existentes.
+O [`scripts/treinar.py`](scripts/treinar.py) implementa as duas etapas de 2025. Na etapa 1, a DepthNet aprende a profundidade da raiz (perda L1). Na etapa 2, o modelo completo (ResNet-50, camada integral, DepthNet da etapa 1, regressão iterativa das juntas e cinemática direta) é treinado com as perdas do estágio sintético de 2025. Com `--init 2025`, os tensores do checkpoint de 2025 cujas formas casam são carregados. Com `--init imagenet`, só os backbones vêm do ImageNet. Os argumentos abaixo se baseiam nos registrados no cabeçalho (`=== ... args={...}`) de cada `resultados/runs/<rodada>/treino.log`. A execução original também limitou o tempo com `--tempo_max_min` (26 min na etapa 1 por transferência, 70 min na etapa 2 por transferência e 30 min no experimento entre câmeras, limites que não chegaram a ser atingidos) e usou a conversão `parcial2` na etapa 1 e no experimento entre câmeras (ver Problemas comuns). Use pastas `--saida` novas: o script acrescenta linhas a `treino.log` e `curvas.csv` já existentes.
 
 1. Treine a etapa 1 (DepthNet) com os pesos de 2025 e com ImageNet:
 
@@ -139,7 +139,7 @@ python scripts/treinar.py --dados /dados/final --saida /runs/repro_etapa1_imagen
   --init imagenet --epocas 5 --inicio_decaimento 2 --workers 3
 ```
 
-2. Treine a etapa 2 por transferência (20 épocas) e a linha de base (12 épocas, o orçamento obtido na execução original; use 20 para comparar no mesmo número de épocas):
+2. Treine a etapa 2 por transferência (20 épocas) e a linha de base. Na execução original, a linha de base foi lançada com `--epocas 20 --tempo_max_min 50` e parou na 12ª época pelo limite de tempo (`resultados/runs/final_full_imagenet/treino.log`, que registra também uma primeira tentativa com 45 min, reiniciada um minuto depois); o comando abaixo fixa as 12 épocas, e você pode usar 20 para comparar no mesmo número de épocas:
 
 ```bash
 python scripts/treinar.py --dados /dados/final --saida /runs/repro_full_transfer --etapa full \
@@ -202,7 +202,7 @@ python scripts/exportar_modelo.py --ckpt /runs/repro_full_transfer/melhor.pt --d
   --saida /runs/pacote/pose_servo6dof.pt --metricas /runs/repro_full_transfer/aval/metricas_teste.json
 ```
 
-2. Teste o `PosePredictor` pela linha de comando com uma imagem do teste versionada no repositório. Para usar o modelo final do Release, aponte `--ckpt` para `inferencia/modelo/pose_servo6dof.pt`:
+2. Teste o `PosePredictor` pela linha de comando com uma imagem do teste versionada no repositório. O comando usa o modelo final do Release; para testar o seu pacote, troque `--ckpt` (e o primeiro argumento do `latencia_predictor.py`) por `/runs/pacote/pose_servo6dof.pt`:
 
 ```bash
 python inferencia/predict.py --ckpt inferencia/modelo/pose_servo6dof.pt \
@@ -255,7 +255,7 @@ Ao refazer as etapas com o dataset completo, espere valores próximos, mas não 
 ## Problemas comuns e soluções
 
 - Código de 2025 com dois erros: na variante MyNet, a profundidade da raiz era calculada depois da camada integral, que recebia `root_trans = 0`; e `train_full.py` chamava `optimizer.step()` duas vezes por iteração. Os dois já estão corrigidos no repositório ([`hpe2025/models/full_net.py`](hpe2025/models/full_net.py), trecho marcado `[porte 2026] CORRECAO`, e um único `opt.step()` em [`scripts/treinar.py`](scripts/treinar.py)). Não treine com o código de [`legado_2025/`](legado_2025), mantido sem alterações como registro.
-- Depth Anything V2 Large: vem do Hugging Face no primeiro uso. Sem internet no container, rode [`scripts/baixar_pesos_da.py`](scripts/baixar_pesos_da.py) numa máquina conectada e copie o cache para `$HOME/.cache/huggingface`. O aviso de requisições não autenticadas pode ser ignorado.
+- Depth Anything V2 Large: vem do Hugging Face no primeiro uso. Sem internet no container, rode [`scripts/baixar_pesos_da.py`](scripts/baixar_pesos_da.py) numa máquina conectada e copie o cache para `$HOME/cerise2026/hf_cache`. O aviso de requisições não autenticadas pode ser ignorado.
 - Latência maior que a de referência, ou instável: as medidas foram feitas com a GPU compartilhada com outros serviços. A decomposição de `avaliar.py --latencia` (213,8 ms: 138,9 do Depth Anything V2 e 74,9 do HPE) foi medida com um treino rodando em paralelo. Meça com a GPU livre. O Depth Anything V2 ViT-L responde por cerca de 65% do custo.
 - MAE de cerca de 42° na junta 5: é esperado e não indica erro de execução. O keypoint da garra fica sobre o eixo da rotação da garra, então essa junta não é observável pelos keypoints atuais, e a `joint_6` não é estimada. Corrigir exige novos keypoints (pontas das pinças) e novo treino.
 - Métricas ruins com os checkpoints do Release: confira se a conversão usou `--crop_json resultados/dados_convertidos/final/crop.json` e o dataset cinza, não a variante laranja.
